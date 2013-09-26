@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project glroulette with libraries in sub-folder">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.nr.roulette.App"/>
+                <attribute name="Class-Path" value=". glroulette_lib/jersey-container-grizzly2-http-2.3.jar glroulette_lib/javax.inject-2.2.0-b14.jar glroulette_lib/grizzly-http-server-2.3.3.jar glroulette_lib/grizzly-http-2.3.3.jar glroulette_lib/grizzly-framework-2.3.3.jar glroulette_lib/grizzly-rcm-2.3.3.jar glroulette_lib/jersey-common-2.3.jar glroulette_lib/javax.annotation-api-1.2.jar glroulette_lib/guava-14.0.1.jar glroulette_lib/hk2-api-2.2.0-b14.jar glroulette_lib/hk2-utils-2.2.0-b14.jar glroulette_lib/hk2-locator-2.2.0-b14.jar glroulette_lib/asm-all-repackaged-2.2.0-b14.jar glroulette_lib/cglib-2.2.0-b14.jar glroulette_lib/osgi-resource-locator-1.0.1.jar glroulette_lib/jersey-server-2.3.jar glroulette_lib/jersey-client-2.3.jar glroulette_lib/validation-api-1.1.0.Final.jar glroulette_lib/javax.ws.rs-api-2.0.jar glroulette_lib/jersey-media-json-jettison-2.3.jar glroulette_lib/jettison-1.3.3.jar"/>
+            </manifest>
+            <fileset dir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/target/classes"/>
+        </jar>
+        <delete dir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <mkdir dir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/jersey/containers/jersey-container-grizzly2-http/2.3/jersey-container-grizzly2-http-2.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/hk2/external/javax.inject/2.2.0-b14/javax.inject-2.2.0-b14.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/grizzly/grizzly-http-server/2.3.3/grizzly-http-server-2.3.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/grizzly/grizzly-http/2.3.3/grizzly-http-2.3.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/grizzly/grizzly-framework/2.3.3/grizzly-framework-2.3.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/grizzly/grizzly-rcm/2.3.3/grizzly-rcm-2.3.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/jersey/core/jersey-common/2.3/jersey-common-2.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/javax/annotation/javax.annotation-api/1.2/javax.annotation-api-1.2.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/com/google/guava/guava/14.0.1/guava-14.0.1.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/hk2/hk2-api/2.2.0-b14/hk2-api-2.2.0-b14.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/hk2/hk2-utils/2.2.0-b14/hk2-utils-2.2.0-b14.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/hk2/hk2-locator/2.2.0-b14/hk2-locator-2.2.0-b14.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/hk2/external/asm-all-repackaged/2.2.0-b14/asm-all-repackaged-2.2.0-b14.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/hk2/external/cglib/2.2.0-b14/cglib-2.2.0-b14.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/hk2/osgi-resource-locator/1.0.1/osgi-resource-locator-1.0.1.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/jersey/core/jersey-server/2.3/jersey-server-2.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/jersey/core/jersey-client/2.3/jersey-client-2.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/jersey/media/jersey-media-json-jettison/2.3/jersey-media-json-jettison-2.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+        <copy file="C:/Users/viktor.yeliseyev/.m2/repository/org/codehaus/jettison/jettison/1.3.3/jettison-1.3.3.jar" todir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette_lib"/>
+    </target>
+</project>
