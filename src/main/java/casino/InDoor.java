@@ -49,6 +49,7 @@ public class InDoor {
 		
 		OperationResult regPlayerResult = croupie.registerPlayer(player);
 		
+		
 		return response;
 	}
 		
