@@ -54,7 +54,7 @@ public class RequestFactory {
         return req;
     }
 
-/*    private static GetStatsRequest createGetStatsRequest(Document doc) {
+/*	private static GetStatsRequest createGetStatsRequest(Document doc) {
         RegisterRequest req = null;
         return req;
     }*/

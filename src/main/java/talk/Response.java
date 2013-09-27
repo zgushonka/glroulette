@@ -5,10 +5,11 @@ public abstract class Response {
 //	respond to actions
 //		RegisterResponse, BetResponse, CommandResponse
 	
-	public Response (String userid, String command, String answer) {
+	public Response (String userid, String command, String answer, String reason) {
 		setUserid(userid);
 		setCommand(command);
 		setAnswer(answer);
+		setReason(reason);
 	}
 
 	public String getUserid() {
@@ -39,8 +40,17 @@ public abstract class Response {
 		this.command = command;
 	}
 
+	public String getReason() {
+		return reason;
+	}
+
+	protected void setReason(String reason) {
+		this.reason = reason;
+	}
+
 	private String userid;
-	private String answer;	
+	private String answer;
+	private String reason;
 	private String command;
 	
 }
