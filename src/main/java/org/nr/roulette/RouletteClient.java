@@ -20,18 +20,18 @@ public class RouletteClient {
         OutputStreamWriter out = new OutputStreamWriter(
             httpCon.getOutputStream());
         
-//        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-//        		"<client session=\"V0ja3a2B7ZtklPqb\" command=\"register\"> " + 
-//        		"<user name=\"Some_username_here\"/> " + 
-//        		"<password value=\"password\" />  " + 
-//        		"<password confirmation=\"password\" />" + 
-//        		"</client>");
+        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+        		"<client session=\"V0ja3a2B7ZtklPqb\" command=\"register\"> " + 
+        		"<user name=\"Some_username_here\"/> " + 
+        		"<password value=\"password\" />  " + 
+        		"<password confirmation=\"password\" />" + 
+        		"</client>");
         
         
-        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
+/*        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
         		"            <client session=\"V0ja3a2B7ZtklPqb\" user_id=\"id\" password=\"password\" command=\"bet\">" + 
         		"            <bet type=\"ParityBet\" value=\"36\" coins=\"10\" />" + 
-        		"            </client>");
+        		"            </client>");*/
 //        
 //        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><client session=\"V0ja3a2B7ZtklPqb\" uname=\"username\" password=\"password\" command=\"spin\" />");
 //        
