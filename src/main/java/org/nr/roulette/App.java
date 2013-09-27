@@ -33,6 +33,7 @@ public class App {
             final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), createApp());
             System.out.println("Listening URI is " + BASE_URI);
             System.out.println("Rules can be found on " + BASE_URI + "rules");
+            System.out.println("Game stats can be obtained from " + BASE_URI + "stats");
             System.out.println("The WADL file can be found on " + BASE_URI + "application.wadl");
             System.out.println(String.format("Application started.%nHit enter to stop it..."));
             System.in.read();
