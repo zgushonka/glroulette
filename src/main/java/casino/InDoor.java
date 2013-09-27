@@ -6,17 +6,17 @@ import talk.Response;
 
 public class InDoor { 
 	
-	public static Response takeObject (BetRequest request) {
+	public static Response processBetRequest (BetRequest request) {
 		System.out.println("Bet request received "+request);
 		return null;
 	}
 	
-	public static Response takeObject(RegisterRequest request){
+	public static Response processRegisterRequest(RegisterRequest request){
 		System.out.println("Register request received "+request);
 		return null;
-		
 	}
 		
+	
 	/*
 			commands:
 			 user commands:

@@ -35,10 +35,10 @@ public class WsAdapter {
             Request request = RequestFactory.createRequest(xmlRequest);
             if (request  instanceof RegisterRequest)
             { 
-                casino.InDoor.takeObject((RegisterRequest) request); 
+                casino.InDoor.processRegisterRequest((RegisterRequest) request); 
             }
             else if (request  instanceof BetRequest)
-                casino.InDoor.takeObject((BetRequest) request);
+                casino.InDoor.processBetRequest((BetRequest) request);
 //            else if (request  instanceof GetStatsRequest)
 //                casino.InDoor.takeObject((GetStatsRequest) request);
             
