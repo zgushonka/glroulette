@@ -1,10 +1,12 @@
 package bets;
 
+import org.nr.roulette.exceptions.ValidationException;
+
 public class HalfBet extends Bet {	
 	
 	private static final int RATE = 1;
 
-	public HalfBet (int number, int stake) {
+	public HalfBet (int number, int stake) throws ValidationException {
 		super (RATE, number, stake);
 	}
 

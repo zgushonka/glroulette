@@ -1,10 +1,12 @@
 package bets;
 
+import org.nr.roulette.exceptions.ValidationException;
+
 public class SplitVerticalBet extends SmallSectorBet {
 	
 	private static final int RATE = 17;
 	
-	public SplitVerticalBet (int number, int stake) {
+	public SplitVerticalBet (int number, int stake) throws ValidationException {
 		super (RATE, number, stake);
 	}
 	

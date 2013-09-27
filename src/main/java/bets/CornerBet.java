@@ -1,10 +1,12 @@
 package bets;
 
+import org.nr.roulette.exceptions.ValidationException;
+
 public class CornerBet extends SmallSectorBet {	
 	
 	private static final int RATE = 8;
 
-	public CornerBet (int number, int stake) {
+	public CornerBet (int number, int stake) throws ValidationException {
 		super (RATE, number, stake);
 	}
 

@@ -1,10 +1,12 @@
 package bets;
 
+import org.nr.roulette.exceptions.ValidationException;
+
 // superclass for Split and Corner Bets
 public abstract class SmallSectorBet extends Bet {
 	
 	// constructor for subclasses
-	protected SmallSectorBet (int rate, int number, int stake) {
+	protected SmallSectorBet (int rate, int number, int stake) throws ValidationException {
 		super (rate, number, stake);
 	}
 	

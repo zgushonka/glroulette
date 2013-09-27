@@ -3,6 +3,7 @@ package casino;
 import org.nr.roulette.exceptions.ValidationException;
 
 import talk.BetRequest;
+import talk.BetResponse;
 import talk.RegisterRequest;
 import talk.RegisterResponse;
 import talk.Response;
@@ -19,11 +20,34 @@ public class InDoor {
 	
 	public static Response processBetRequest (BetRequest request) {
 		System.out.println("Bet request received "+request);
+		
+//		BetResponse (String userid, String command, String answer, String tableType, int stake, int number, String betType)
+		
+		BetResponse response = null;
+		String answer = null;
+		
+		try {
+			if ( request.getBetType() == "StrightBet" ) {
+				
+			}
+		}
+		catch (ValidationException vex) {
+			
+		}
+		
+		response = new BetResponse(	request.getUserid(),
+				"bet request",
+				answer,
+				request.getTableType(),
+				request.getStake(),
+				request.getNumber(),
+				request.getBetType());
+		
 		return null;
 	}
 	
 	public static Response processRegisterRequest(RegisterRequest request){
-		System.out.println("Register request received "+request);
+		System.out.println( "Register request received from "+request.getPlayerName() );
 		
 		String name = request.getPlayerName();
 		String password = request.getPlayerPassword();
@@ -48,15 +72,18 @@ public class InDoor {
 		}
 		
 		//update
-		OperationResult regPlayerResult = croupie_need_to_be_created.registerPlayer(player);
+//		OperationResult regPlayerResult = croupie_need_to_be_created.registerPlayer(player);
+		OperationResult regPlayerResult = Croupie.newInstance().registerPlayer(player);
 		
 		if ( regPlayerResult == OperationResult.PLAYER_REGISTERED) {
+			System.out.println( "Player successfully registered: "+request.getPlayerName() );
+			
 			userid = player.getId().toString();
 			answer = ANSWER_OK;
 			response = new RegisterResponse (userid, command, answer);
 		}
 		else if ( regPlayerResult == OperationResult.PLAYER_ALREADY_REGISTERED ) {
-			userid = NO_ID;
+			userid = player.getId().toString();
 			answer = ANSWER_BAD;
 			String reason = "Player already registered";
 			response = new RegisterResponse (userid, command, answer, reason );

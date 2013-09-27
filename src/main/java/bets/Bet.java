@@ -2,6 +2,8 @@ package bets;
 
 import java.util.UUID;
 
+import org.nr.roulette.exceptions.ValidationException;
+
 //	Base Class for all Bets
 public abstract class Bet {
 
@@ -38,13 +40,13 @@ public abstract class Bet {
 	private final int rate;
 	
 //	Constructor
-	protected Bet (int rate, int number, int stake) {
+	protected Bet (int rate, int number, int stake) throws ValidationException {
 		this.rate = rate;
 		createBet (number, stake);
 	}
 	
 	
-	private void createBet (int number, int stake) {
+	private void createBet (int number, int stake) throws ValidationException {
 		setStake(stake);
 		setBet(number);		
 	}	
@@ -53,7 +55,7 @@ public abstract class Bet {
 	
 	private int stake;
 	
-	private void setStake(int stake) {
+	private void setStake(int stake) throws ValidationException {
 		checkStakeValidity(stake);		
 		this.stake = stake;
 	}
@@ -65,7 +67,7 @@ public abstract class Bet {
 	//	betCode used for win decision
 	private int betCode;
 	
-	private void setBet(int number) {
+	private void setBet(int number) throws ValidationException {
 		checkNumberValidity(number);
 		
 		this.number = number;
@@ -116,12 +118,12 @@ public abstract class Bet {
 	private static final int MIN_STAKE = 1;
 	private static final int MAX_STAKE = 10;
 	
-	private void checkStakeValidity(int stake) {
+	private void checkStakeValidity (int stake) throws ValidationException  {
 		if ( (MIN_STAKE <= stake) && (stake <= MAX_STAKE) ) {
 			// in range - OK
 		} else {
 			// out of range
-			// TODO exception
+			throw new ValidationException("Stake is out of range.");
 		}
 	}
 
@@ -132,12 +134,12 @@ public abstract class Bet {
 	private static final int MIN_NUMBER = 1;
 	private static final int MAX_NUMBER = 36;
 	
-	protected void checkNumberValidity(int number) {
+	protected void checkNumberValidity (int number) throws ValidationException {
 		if ( (MIN_NUMBER <= number) && (number <= MAX_NUMBER) ) {
 			// in range - OK
 		} else {
 			// out of range
-			// TODO exception
+			throw new ValidationException("Bet number is out of range.");
 		}
 	}
 	

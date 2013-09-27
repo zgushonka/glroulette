@@ -3,12 +3,14 @@ package bets;
 import java.util.Arrays;
 import java.util.List;
 
+import org.nr.roulette.exceptions.ValidationException;
+
 
 public class ColourBet extends Bet {
 	
 	private static final int RATE = 1;
 
-	public ColourBet(int number, int stake) {
+	public ColourBet(int number, int stake) throws ValidationException {
 		super (RATE, number, stake);
 	}
 
