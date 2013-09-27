@@ -7,7 +7,7 @@ import bets.*;
 
 
 public class Casino {
-	
+	/*	
 	public static void main(String[] args) {
 		
 		int number = 1;
@@ -51,7 +51,7 @@ public class Casino {
 			
 			System.out.println("Spin number " +i+ "    winNumber is " +winNumber+ "    winInSpin " +winInSpin+ "   current ballance =  " + userMoney);
 		}
-	/*	*/	
 	}
+	/*	*/	
 
 }
