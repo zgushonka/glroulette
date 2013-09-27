@@ -11,6 +11,8 @@ import talk.Response;
 
 public class InDoor {
 	
+    //nr update
+    
 	final static String ANSWER_OK = "OK";
 	final static String ANSWER_BAD = "Fail";
 	final static String NO_ID = "NO_ID";

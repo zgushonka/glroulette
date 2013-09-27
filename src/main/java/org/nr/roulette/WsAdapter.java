@@ -15,16 +15,17 @@ import org.nr.roulette.exceptions.ValidationException;
 import org.xml.sax.SAXException;
 
 import talk.BetRequest;
+import talk.BetResponse;
 import talk.RegisterRequest;
+import talk.RegisterResponse;
 import talk.Request;
+import casino.InDoor;
 
 @Path("/")
 public class WsAdapter {
     /**
      * The method performs requests routing and corresponding responses
      * generation
-     * 
-     * 
      */
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
@@ -35,12 +36,18 @@ public class WsAdapter {
             Request request = RequestFactory.createRequest(xmlRequest);
             if (request  instanceof RegisterRequest)
             { 
-                casino.InDoor.processRegisterRequest((RegisterRequest) request); 
+                //RegisterResponse regResp = (RegisterResponse) casino.RequestProcessorStub.processRegisterRequest((RegisterRequest) request);
+                RegisterResponse regResp = (RegisterResponse) InDoor.processRegisterRequest((RegisterRequest) request);
+                response = ResponseXmlGenerator.generate(regResp); 
             }
             else if (request  instanceof BetRequest)
-                casino.InDoor.processBetRequest((BetRequest) request);
+            {
+                //BetResponse betResp = (BetResponse) casino.RequestProcessorStub.processBetRequest((BetRequest) request);
+                BetResponse betResp = (BetResponse) InDoor.processBetRequest((BetRequest) request);                
+                response = ResponseXmlGenerator.generate(betResp); 
 //            else if (request  instanceof GetStatsRequest)
 //                casino.InDoor.takeObject((GetStatsRequest) request);
+            }
             
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
