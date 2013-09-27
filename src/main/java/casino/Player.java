@@ -2,6 +2,8 @@ package casino;
 
 import java.util.UUID;
 
+import org.nr.roulette.exceptions.ValidationException;
+
 public class Player {
 	
 	private final String name;
@@ -10,7 +12,7 @@ public class Player {
 	private int money;
 	
 	
-	public Player(String name, String password) {
+	public Player(String name, String password)  throws ValidationException{
 		
 		checkNameString(name);
 		checkPasswordString(password);
@@ -20,15 +22,19 @@ public class Player {
 		money = 0;
 	}
 	
-	private void checkNameString (String name) {
-		if (name.length() < 4) {
-			// TODO exception
+	private void checkNameString (String name) throws ValidationException {
+	    if (name == null ) {
+            throw new ValidationException("Name should not be null");
+        }
+	    if (name.length() < 4) {
+			throw new ValidationException("Name is too short. The length is " + name.length() + " and should be > 4");
 		}
 	}
 	
-	private void checkPasswordString (String password) {
+	private void checkPasswordString (String password)  throws ValidationException {
 		if (password.length() < 6) {
 			// TODO exception
+		    
 		}
 	}
 

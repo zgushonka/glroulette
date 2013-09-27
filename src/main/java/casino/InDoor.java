@@ -1,5 +1,7 @@
 package casino;
 
+import org.nr.roulette.exceptions.ValidationException;
+
 import talk.BetRequest;
 import talk.RegisterRequest;
 import talk.RegisterResponse;
@@ -34,18 +36,22 @@ public class InDoor {
 		String command = "register";
 		String answer;
 		
+		RegisterResponse response = null;
+		
 		try {
 			Player player = new Player(name, password);
 						
 			userid = player.getId().toString();
-			answer = ANSWER_OK;			
+			answer = ANSWER_OK;
+			response = new RegisterResponse (userid, command, answer);
 		}
-		catch () {
+		catch (ValidationException vex) {
 			userid = NO_ID;
 			answer = ANSWER_BAD;
+			response = new RegisterResponse(userid, command, vex.getMessage());
 		}
 		
-		RegisterResponse response = new RegisterResponse (userid, command, answer);
+		
 		
 		
 		return response;
