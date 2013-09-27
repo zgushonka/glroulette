@@ -47,7 +47,7 @@ public class InDoor {
 			response = new RegisterResponse (userid, command, answer, vex.getMessage() );
 		}
 		
-		OperationResult regPlayerResult = croupie.registerPlayer(player);
+		OperationResult regPlayerResult = croupie_need_to_be_created.registerPlayer(player);
 		
 		
 		return response;
