@@ -23,7 +23,7 @@ public class Croupie {
 	//	binding bet to player
 	private Map<UUID, UUID> betsToPlayer = new HashMap<UUID, UUID>();
 	
-	protected OperationResult registerPlayer(Player player)
+	public OperationResult registerPlayer(Player player)
 	{
 		return players.add(player) ?
 				OperationResult.PLAYER_REGISTERED :
@@ -33,6 +33,8 @@ public class Croupie {
 	public void flushAllPlayers ()
 	{
 		players.clear();
+		bets.clear();
+		betsToPlayer.clear();
 	}	
 	
 	

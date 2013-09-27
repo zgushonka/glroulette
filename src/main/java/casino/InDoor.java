@@ -17,11 +17,6 @@ public class InDoor {
 	
 	public static Response processBetRequest (BetRequest request) {
 		System.out.println("Bet request received "+request);
-		
-		
-		
-		
-		
 		return null;
 	}
 	
@@ -36,10 +31,11 @@ public class InDoor {
 		String command = "register";
 		String answer;
 		
+		Player player = null;
 		RegisterResponse response = null;
 		
 		try {
-			Player player = new Player(name, password);
+			player = new Player(name, password);
 						
 			userid = player.getId().toString();
 			answer = ANSWER_OK;
@@ -50,6 +46,8 @@ public class InDoor {
 			answer = ANSWER_BAD;
 			response = new RegisterResponse (userid, command, answer, vex.getMessage() );
 		}
+		
+		OperationResult regPlayerResult = croupie.registerPlayer(player);
 		
 		return response;
 	}
