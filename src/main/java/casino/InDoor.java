@@ -33,27 +33,35 @@ public class InDoor {
 		String command = "register";
 		String answer;
 		
+		
 		Player player = null;
 		RegisterResponse response = null;
 		
 		try {
 			player = new Player(name, password);
-						
-			userid = player.getId().toString();
-			answer = ANSWER_OK;
-			response = new RegisterResponse (userid, command, answer);
 		}
 		catch (ValidationException vex) {
 			userid = NO_ID;
 			answer = ANSWER_BAD;
-			response = new RegisterResponse (userid, command, answer, vex.getMessage() );
+			String reason = vex.getMessage();
+			response = new RegisterResponse (userid, command, answer, reason );
 		}
-		
 		
 		//update
 		OperationResult regPlayerResult = croupie_need_to_be_created.registerPlayer(player);
 		
-		
+		if ( regPlayerResult == OperationResult.PLAYER_REGISTERED) {
+			userid = player.getId().toString();
+			answer = ANSWER_OK;
+			response = new RegisterResponse (userid, command, answer);
+		}
+		else if ( regPlayerResult == OperationResult.PLAYER_ALREADY_REGISTERED ) {
+			userid = NO_ID;
+			answer = ANSWER_BAD;
+			String reason = "Player already registered";
+			response = new RegisterResponse (userid, command, answer, reason );
+		}
+				
 		return response;
 	}
 		
