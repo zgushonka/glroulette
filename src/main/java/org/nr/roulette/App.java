@@ -10,6 +10,8 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jettison.JettisonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import casino.Croupie;
+
 /**
  * Utility class which can create {@link org.glassfish.jersey.server.ApplicationHandler} instance and provides support
  * for running this sample from command line.
@@ -17,6 +19,7 @@ import org.glassfish.jersey.server.ResourceConfig;
  */
 public class App {
 
+    Croupie cr = Croupie.newInstance();
     
     
     private static String BASE_URI = "http://localhost:portnumber/casino/";

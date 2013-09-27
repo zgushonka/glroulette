@@ -30,6 +30,13 @@ public class InDoor {
 			if ( request.getBetType() == "StrightBet" ) {
 				
 			}
+			
+			
+			// TODO remove the stub below
+			if (request.getBetType().equals("Please remove this stub"))
+			{ throw new ValidationException("stub"); }
+			
+			
 		}
 		catch (ValidationException vex) {
 			
