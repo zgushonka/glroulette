@@ -27,14 +27,16 @@ public class Player {
             throw new ValidationException("Name should not be null");
         }
 	    if (name.length() < 4) {
-			throw new ValidationException("Name is too short. The length is " + name.length() + " and should be > 4");
+			throw new ValidationException("Name is too short. The length is " + name.length() + " and should be > 3");
 		}
 	}
 	
 	private void checkPasswordString (String password)  throws ValidationException {
-		if (password.length() < 6) {
-			// TODO exception
-		    
+		if (password == null ) {
+            throw new ValidationException("Password should not be null");
+        }
+	    if (password.length() < 6) {
+			throw new ValidationException("Password is too short. The length is " + name.length() + " and should be > 5");
 		}
 	}
 

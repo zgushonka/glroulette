@@ -48,11 +48,8 @@ public class InDoor {
 		catch (ValidationException vex) {
 			userid = NO_ID;
 			answer = ANSWER_BAD;
-			response = new RegisterResponse(userid, command, vex.getMessage());
+			response = new RegisterResponse (userid, command, answer, vex.getMessage() );
 		}
-		
-		
-		
 		
 		return response;
 	}
