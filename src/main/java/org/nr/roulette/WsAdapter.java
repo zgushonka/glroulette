@@ -43,16 +43,12 @@ public class WsAdapter {
 //                casino.InDoor.takeObject((GetStatsRequest) request);
             
         } catch (ParserConfigurationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (SAXException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (ValidationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return response;
@@ -62,7 +58,7 @@ public class WsAdapter {
     @GET
     @Path("/rules")
     @Produces("text/html")
-    public String getRules(String request)
+    public String getRules()
     {
         // TODO: Add generation of a human-readable HTML page with rules here 
         String res = "<html><head>" +
@@ -72,6 +68,59 @@ public class WsAdapter {
         res += "<li>Второе правило рулетки: </li>";
         res += "<li>Третье правило рулетки: </li>";
         res += "</ol></body></html>";
+        
+        return res;
+    }    
+    
+    
+    @GET
+    @Path("/stats")
+    @Produces("text/html")
+    public String getStats()
+    {
+        // TODO: Add generation of a human-readable HTML page with rules here 
+        String res = "<html><head>" +
+                "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/></head>" +
+                "<body><table border=\"1\" bordercolor=\"#006600\" style=\"background-color:#FFFFCC\" width=\"100%\" cellpadding=\"3\" cellspacing=\"3\">\n" + 
+                "    <tr>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "    </tr>\n" + 
+                "    <tr>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "    </tr>\n" + 
+                "    <tr>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "    </tr>\n" + 
+                "    <tr>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "    </tr>\n" + 
+                "    <tr>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "        <td>Table Cell</td>\n" + 
+                "    </tr>\n" + 
+                "</table>\n" + 
+                "\n" + 
+                "" +
+                "</body></html>";
         
         return res;
     }    
