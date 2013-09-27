@@ -2,15 +2,18 @@ package casino;
 
 import talk.BetRequest;
 import talk.RegisterRequest;
+import talk.Response;
 
 public class InDoor { 
 	
-	public static void takeObject (BetRequest request) {
+	public static Response takeObject (BetRequest request) {
 		System.out.println("Bet request received "+request);
+		return null;
 	}
 	
-	public static void takeObject(RegisterRequest request){
+	public static Response takeObject(RegisterRequest request){
 		System.out.println("Register request received "+request);
+		return null;
 		
 	}
 		
