@@ -112,9 +112,9 @@ public class InDoor {
 		}
 		
 		// if we a here then Bet created successfully
+		answer = ANSWER_OK;
 		UUID playerId = UUID.fromString(request.getUserid());
 		OperationResult regBetResult = Croupie.newInstance().registerBet(bet, playerId);
-		
 		
 		response = new BetResponse(	request.getUserid(),
 				"bet request",
