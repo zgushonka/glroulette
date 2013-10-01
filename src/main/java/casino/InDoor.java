@@ -4,12 +4,23 @@ import java.util.UUID;
 
 import org.nr.roulette.exceptions.ValidationException;
 
-import bets.*;
 import talk.BetRequest;
 import talk.BetResponse;
 import talk.RegisterRequest;
 import talk.RegisterResponse;
 import talk.Response;
+import bets.Bet;
+import bets.ColourBet;
+import bets.ColumnBet;
+import bets.CornerBet;
+import bets.DozenBet;
+import bets.HalfBet;
+import bets.LineBet;
+import bets.ParityBet;
+import bets.SplitHorizontalBet;
+import bets.SplitVerticalBet;
+import bets.StreetBet;
+import bets.StrightBet;
 
 	
 
@@ -88,8 +99,7 @@ public class InDoor {
 		catch (ValidationException vex) {
 			answer = ANSWER_BAD;
 			String reason = vex.getMessage();
-			return response = new BetResponse (userid, command, answer, reason );
-			
+			//return response = new BetResponse (userid, command, answer, reason );
 		}
 		
 		// if we a here then Bet created successfully
