@@ -28,8 +28,8 @@ public class Croupie {
     //  list of bets for next Spin
     private List<Bet> bets = new ArrayList<Bet>();
     
-    //  list of registered players
-    private Set<Player> players = new HashSet<Player>();
+    //  map of registered players
+    private Map<UUID, Player> players = new HashMap<UUID, Player>();
         
     //  binding bet to player
     private Map<UUID, UUID> betsToPlayer = new HashMap<UUID, UUID>();
@@ -38,12 +38,15 @@ public class Croupie {
     private Map< UUID, Set<Integer> > playerBets = new HashMap< UUID, Set<Integer> > ();
     
     
-    
     public OperationResult registerPlayer(Player player)
     {	
-    	boolean playerIsNew = players.add(player);
-    	
-    	if (playerIsNew) {
+    	boolean playerRegistered = players.containsKey( player.getId() );
+    	if (!playerRegistered)
+    	    { 
+    	        players.put(player.getId(), player);
+    	    }
+    	else
+    	{
     		//	Create and Assign Set of BetCodes
     		Set<Integer> betCodesSet = new HashSet<Integer>();
     		playerBets.put(player.getId(), betCodesSet);
@@ -54,11 +57,16 @@ public class Croupie {
     }
     
     
-    
     public OperationResult registerBet(Bet bet, UUID playerId)
     {
-		//	- check bet unique for player    	
-    	if (isBetNewForPlayer (bet, playerId) ) {
+		//  - check player is registered
+        if (!players.containsKey(playerId))
+        {
+            throw new NullPointerException("Player with ID=" + playerId + " is not registered");
+        }
+        
+        //	- check bet unique for player
+        if (isBetNewForPlayer (bet, playerId) ) {
     		addBet(bet, playerId);
     		return OperationResult.BET_OK;
     	}
@@ -101,6 +109,14 @@ public class Croupie {
     public void setManualSpin(boolean manualSpin)
     {
         this.enableManualSpin = manualSpin;
+    }
+
+    public boolean isPasswordValidForUserId(String userid, String password) {
+        if (players.containsKey(userid))
+        {
+            return players.get(userid).isPasswordOk(password);
+        }
+        return false;
     }
     
     
