@@ -22,6 +22,7 @@ public class Player {
 		money = 0;
 	}
 	
+	
 	private void checkNameString (String name) throws ValidationException {
 	    if (name == null ) {
             throw new ValidationException("Name should not be null");

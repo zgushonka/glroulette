@@ -89,6 +89,7 @@ public class InDoor {
 			answer = ANSWER_BAD;
 			String reason = vex.getMessage();
 			return response = new BetResponse (userid, command, answer, reason );
+			
 		}
 		
 		// if we a here then Bet created successfully
