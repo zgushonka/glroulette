@@ -61,37 +61,37 @@ public class InDoor {
 		Bet bet = null;
 		
 		try {
-			if ( request.getBetType() == "StrightBet" ) {
+			if ( request.getBetType().equals("StrightBet" )) {
 				bet = new StrightBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "ColourBet" ) {
+			else if ( request.getBetType().equals("ColourBet" )) {
 				bet = new ColourBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "ColumnBet" ) {
+			else if ( request.getBetType().equals("ColumnBet" )) {
 				bet = new ColumnBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "CornerBet" ) {
+			else if ( request.getBetType().equals("CornerBet" )) {
 				bet = new CornerBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "DozenBet" ) {
+			else if ( request.getBetType().equals("DozenBet" )) {
 				bet = new DozenBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "HalfBet" ) {
+			else if ( request.getBetType().equals("HalfBet" )) {
 				bet = new HalfBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "LineBet" ) {
+			else if ( request.getBetType().equals("LineBet" )) {
 				bet = new LineBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "ParityBet" ) {
+			else if ( request.getBetType().equals("ParityBet" )) {
 				bet = new ParityBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "SplitHorizontalBet" ) {
+			else if ( request.getBetType().equals("SplitHorizontalBet" )) {
 				bet = new SplitHorizontalBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "SplitVerticalBet" ) {
+			else if ( request.getBetType().equals("SplitVerticalBet" )) {
 				bet = new SplitVerticalBet(request.getNumber(), request.getStake() );
 			}
-			else if ( request.getBetType() == "StreetBet" ) {
+			else if ( request.getBetType().equals("StreetBet" )) {
 				bet = new StreetBet(request.getNumber(), request.getStake() );
 			}
 			else {
