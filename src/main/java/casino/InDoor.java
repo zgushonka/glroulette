@@ -1,7 +1,10 @@
 package casino;
 
+import java.util.UUID;
+
 import org.nr.roulette.exceptions.ValidationException;
 
+import bets.*;
 import talk.BetRequest;
 import talk.BetResponse;
 import talk.RegisterRequest;
@@ -18,17 +21,61 @@ public class InDoor {
 	final static String ANSWER_BAD = "Fail";
 	final static String NO_ID = "NO_ID";
 	
+	final static String BET_COMMAND = "NO_ID";
+	final static String REGISTER_COMMAND = "register";
+	
 	public static Response processBetRequest (BetRequest request) {
 		System.out.println("Bet request received "+request);
 		
 //		BetResponse (String userid, String command, String answer, String tableType, int stake, int number, String betType)
 		
-		BetResponse response = null;
+		String userid = request.getUserid();
+		String command = BET_COMMAND;
 		String answer = null;
+		BetResponse response = null;
+		
+		
+		//	- create object Bet
+		//	- send bet to croupie
+		Bet bet = null;
 		
 		try {
 			if ( request.getBetType() == "StrightBet" ) {
-				
+				bet = new StrightBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "ColourBet" ) {
+				bet = new ColourBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "ColumnBet" ) {
+				bet = new ColumnBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "CornerBet" ) {
+				bet = new CornerBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "DozenBet" ) {
+				bet = new DozenBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "HalfBet" ) {
+				bet = new HalfBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "LineBet" ) {
+				bet = new LineBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "ParityBet" ) {
+				bet = new ParityBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "SplitHorizontalBet" ) {
+				bet = new SplitHorizontalBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "SplitVerticalBet" ) {
+				bet = new SplitVerticalBet(request.getNumber(), request.getStake() );
+			}
+			else if ( request.getBetType() == "StreetBet" ) {
+				bet = new StreetBet(request.getNumber(), request.getStake() );
+			}
+			else {
+				//	ERORR
+				System.out.println( "Wrong Bet Type: "+request.getBetType()+ " from player: " +request.getPlayerName() );
 			}
 			
 			
@@ -39,8 +86,15 @@ public class InDoor {
 			
 		}
 		catch (ValidationException vex) {
-			
+			answer = ANSWER_BAD;
+			String reason = vex.getMessage();
+			return response = new BetResponse (userid, command, answer, reason );
 		}
+		
+		// if we a here then Bet created successfully
+		UUID playerId = UUID.fromString(request.getUserid());
+		OperationResult regBetResult = Croupie.newInstance().registerBet(bet, playerId);
+		
 		
 		response = new BetResponse(	request.getUserid(),
 				"bet request",
@@ -50,26 +104,25 @@ public class InDoor {
 				request.getNumber(),
 				request.getBetType());
 		
-		return null;
+		return response;
 	}
 	
 	public static Response processRegisterRequest(RegisterRequest request){
 		System.out.println( "Register request received from "+request.getPlayerName() );
-		
-		String name = request.getPlayerName();
-		String password = request.getPlayerPassword();
-		
+						
 		// answer Strings
 		String userid;
-		String command = "register";
+		String command = REGISTER_COMMAND;
 		String answer;
-		
-		
+				
 		Player player = null;
 		RegisterResponse response = null;
 		
 		try {
-			player = new Player(name, password);
+			String nameFromRequest = request.getPlayerName();
+			String passwordFromRequest = request.getPlayerPassword();
+			
+			player = new Player(nameFromRequest, passwordFromRequest);
 		}
 		catch (ValidationException vex) {
 			userid = NO_ID;
@@ -92,7 +145,7 @@ public class InDoor {
 		else if ( regPlayerResult == OperationResult.PLAYER_ALREADY_REGISTERED ) {
 			userid = player.getId().toString();
 			answer = ANSWER_BAD;
-			String reason = "Player already registered";
+			String reason = "Error: Player already registered";
 			response = new RegisterResponse (userid, command, answer, reason );
 		}
 				

@@ -23,43 +23,73 @@ public class Croupie {
             myOwnCroupieWithBlackJack = new Croupie();
         return myOwnCroupieWithBlackJack;
     }
-    
-    //  list of registered players
-    private Set<Player> players = new HashSet<Player>();
+
     
     //  list of bets for next Spin
     private List<Bet> bets = new ArrayList<Bet>();
     
+    //  list of registered players
+    private Set<Player> players = new HashSet<Player>();
+        
     //  binding bet to player
     private Map<UUID, UUID> betsToPlayer = new HashMap<UUID, UUID>();
     
+    //  Player BetCodes Set
+    private Map< UUID, Set<Integer> > playerBets = new HashMap< UUID, Set<Integer> > ();
+    
+    
+    
     public OperationResult registerPlayer(Player player)
-    {
-        return players.add(player) ?
-                OperationResult.PLAYER_REGISTERED :
-                OperationResult.PLAYER_ALREADY_REGISTERED;
+    {	
+    	boolean playerIsNew = players.add(player);
+    	
+    	if (playerIsNew) {
+    		//	Create and Assign Set of BetCodes
+    		Set<Integer> betCodesSet = new HashSet<Integer>();
+    		playerBets.put(player.getId(), betCodesSet);
+    		return OperationResult.PLAYER_REGISTERED;
+    	}
+    	// else
+        return OperationResult.PLAYER_ALREADY_REGISTERED;
     }
     
-    public void flushAllPlayers ()
+    
+    
+    public OperationResult registerBet(Bet bet, UUID playerId)
+    {
+		//	- check bet unique for player    	
+    	if (isBetNewForPlayer (bet, playerId) ) {
+    		addBet(bet, playerId);
+    		return OperationResult.BET_OK;
+    	}
+    	//	else
+    	return OperationResult.BET_WRONG;
+    }
+
+    
+    private boolean isBetNewForPlayer(Bet bet, UUID playerId) {
+    	return !playerBets.get(playerId).contains(bet.getBetCode());
+	}
+
+	public void flushAllPlayers ()
     {
         players.clear();
         bets.clear();
         betsToPlayer.clear();
+        playerBets.clear();
     }   
     
     
-    protected void addBet(Bet bet, Player player)
+    protected void addBet(Bet bet, UUID playerId)
     {
-        // TODO check bet for unique
+    	UUID betID = bet.getId();
+    	Integer betCode = bet.getBetCode();
+    	
         bets.add(bet);
-        betsToPlayer.put( bet.getId(), player.getId() );        
+        betsToPlayer.put(betID, playerId);
+        playerBets.get(playerId).add(betCode);
     }
     
-    
-    
-    public OperationResult processBet() {
-        return OperationResult.BET_WRONG;
-    }
     
     private boolean enableManualSpin;   
     

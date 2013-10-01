@@ -20,7 +20,7 @@ public abstract class Bet {
 		if (betWin) {
 			betResult = stake * rate;
 		} else {
-			betResult = stake * -1;
+			betResult = stake * -1;		// loose stake
 		}
 		
 		return betResult;
@@ -74,11 +74,11 @@ public abstract class Bet {
 		this.betCode = calcBetCode(number);
 	}
 	
-	public int getNumber() {
+	protected int getNumber() {
 		return number;
 	 }
 	
-	protected int getBetCode() {
+	public int getBetCode() {
 		return betCode;
 	}
 	
