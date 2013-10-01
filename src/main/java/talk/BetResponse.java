@@ -6,7 +6,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class BetResponse extends Response {
 	
-	public BetResponse (String userid, String command, String answer, String tableType, int stake, int number, String betType) {
+	public BetResponse() {
+	    super();
+	    
+	};
+	
+    public BetResponse (String userid, String command, String answer, String tableType, int stake, int number, String betType) {
 		super (userid, command, answer, "");
 		setStake(stake);
 		setTableType(tableType);
