@@ -35,25 +35,13 @@ public class InDoor {
 	final static String BET_COMMAND = "NO_ID";
 	final static String REGISTER_COMMAND = "register";
 
-    public static void main(String[] args)
-    {
-      BetRequest request = new BetRequest("1def843d-2405-46d5-bb5f-e6ebe6858e93","passworddd","normal","StrightBet",10,10);
-      Response rsp = processBetRequest(request);
-      System.out.println("main from InDoor finished");
-    }
-	
-	
-	
-	public static Response processBetRequest (BetRequest request) {
-	    
-		System.out.println("Bet request received "+request);
-		
-//		BetResponse (String userid, String command, String answer, String tableType, int stake, int number, String betType)
-		
-		String userid = request.getUserid();
+	public static Response processBetRequest (BetRequest request) throws ValidationException {
 		String command = BET_COMMAND;
-		String answer = null;
+		String answer = "";
+		String reason = "";
+		String userid = request.getUserid();
 		BetResponse response = null;
+		OperationResult regBetResult = null;
 		
 		
 		//	- create object Bet
@@ -61,6 +49,14 @@ public class InDoor {
 		Bet bet = null;
 		
 		try {
+	        // Password check 
+		    // TODO Add hash check instead of plain text password
+		    if(!Croupie.newInstance().isPasswordValidForUserId(userid, request.getPlayerPassword()))
+	        {
+	            throw new ValidationException("Player's password is not valid");
+	        }		    
+		    
+		    
 			if ( request.getBetType().equals("StrightBet" )) {
 				bet = new StrightBet(request.getNumber(), request.getStake() );
 			}
@@ -99,22 +95,23 @@ public class InDoor {
 				System.out.println( "Wrong Bet Type: "+request.getBetType()+ " from player: " +request.getPlayerName() );
 			}
 			
-			
-			// TODO remove the stub below
-			if (request.getBetType().equals("Please remove this stub"))
-			{ throw new ValidationException("stub"); }
-			
 		}
 		catch (ValidationException vex) {
 			answer = ANSWER_BAD;
-			String reason = vex.getMessage();
+			reason = vex.getMessage();
 			//return response = new BetResponse (userid, command, answer, reason );
 		}
 		
 		// if we a here then Bet created successfully
 		answer = ANSWER_OK;
 		UUID playerId = UUID.fromString(request.getUserid());
-		OperationResult regBetResult = Croupie.newInstance().registerBet(bet, playerId);
+		
+		try {
+            regBetResult = Croupie.newInstance().registerBet(bet, playerId);
+        } catch (NullPointerException ex) {
+            answer = ANSWER_BAD;
+            reason = ex.getMessage();
+        }
 		
 		response = new BetResponse(	request.getUserid(),
 				"bet request",
@@ -122,7 +119,8 @@ public class InDoor {
 				request.getTableType(),
 				request.getStake(),
 				request.getNumber(),
-				request.getBetType());
+				request.getBetType(), 
+				reason);
 		
 		return response;
 	}
