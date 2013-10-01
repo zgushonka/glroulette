@@ -1,18 +1,24 @@
 package talk;
 
+import javax.xml.bind.annotation.XmlElement;
+
 public abstract class Response {
 	
 //	respond to actions
 //		RegisterResponse, BetResponse, CommandResponse
 	
 	public Response (String userid, String command, String answer, String reason) {
-		setUserid(userid);
+		
+	    setUserid(userid);
 		setCommand(command);
 		setAnswer(answer);
 		setReason(reason);
 	}
 
-	public String getUserid() {
+	public Response() {
+    }
+
+    public String getUserid() {
 		return userid;
 	}
 
@@ -48,9 +54,16 @@ public abstract class Response {
 		this.reason = reason;
 	}
 
+	@XmlElement
 	private String userid;
+	
+	@XmlElement
 	private String answer;
+	
+	@XmlElement
 	private String reason;
+	
+	@XmlElement
 	private String command;
 	
 }

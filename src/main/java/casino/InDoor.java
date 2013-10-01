@@ -34,8 +34,18 @@ public class InDoor {
 	
 	final static String BET_COMMAND = "NO_ID";
 	final static String REGISTER_COMMAND = "register";
+
+    public static void main(String[] args)
+    {
+      BetRequest request = new BetRequest("1def843d-2405-46d5-bb5f-e6ebe6858e93","passworddd","normal","StrightBet",10,10);
+      Response rsp = processBetRequest(request);
+      System.out.println("main from InDoor finished");
+    }
+	
+	
 	
 	public static Response processBetRequest (BetRequest request) {
+	    
 		System.out.println("Bet request received "+request);
 		
 //		BetResponse (String userid, String command, String answer, String tableType, int stake, int number, String betType)
@@ -93,7 +103,6 @@ public class InDoor {
 			// TODO remove the stub below
 			if (request.getBetType().equals("Please remove this stub"))
 			{ throw new ValidationException("stub"); }
-			
 			
 		}
 		catch (ValidationException vex) {

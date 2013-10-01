@@ -1,6 +1,9 @@
 package talk;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class BetResponse extends Response {
 	
 	public BetResponse (String userid, String command, String answer, String tableType, int stake, int number, String betType) {
@@ -39,9 +42,16 @@ public class BetResponse extends Response {
 		this.betType = betType;
 	}
 
+	@XmlElement
 	private String tableType;
+	
+	@XmlElement
 	private int stake;
+	
+	@XmlElement
 	private int number;
+	
+	@XmlElement
 	private String betType;
 	
 }
