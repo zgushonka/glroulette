@@ -69,12 +69,9 @@ public class WsAdapter {
     {
         // TODO: Add generation of a human-readable HTML page with rules here 
         String res = "<html><head>" +
-                "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/></head>" +
-                "<body><p style ='font-weigh:bold; color:red'>Rules</p>";
-        res += "<ol><li>Первое правило рулетки: Никогда не говорить о рулетке всуе</li>";
-        res += "<li>Второе правило рулетки: </li>";
-        res += "<li>Третье правило рулетки: </li>";
-        res += "</ol></body></html>";
+                "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/></head><title>GL Roulette Rules</title>" +
+                "<body><p style ='font-weigh:bold; color:red'><a href=\"https://docs.google.com/a/globallogic.com/document/d/1TYo6RZ7VZYn5hso7gq3dfmX0eTnAt5VvgkPdjaErDsA/edit?usp=drive_web\">Roulette Roules</a></p>";
+        res += "</body></html>";
         
         return res;
     }    
