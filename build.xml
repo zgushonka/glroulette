@@ -3,12 +3,13 @@
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/jarout/glroulette.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="D:/WORKSPACES/Workspace_java/glroulette/jarout/glroulette.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="org.nr.roulette.App"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
-            <fileset dir="C:/Users/viktor.yeliseyev/Desktop/jersey-2.3/jersey-2.3/examples/json-jettison/target/classes"/>
+            <fileset dir="D:/WORKSPACES/Workspace_java/glroulette/target/classes"/>
+            
             <zipfileset excludes="META-INF/*.SF" src="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/jersey/containers/jersey-container-grizzly2-http/2.3/jersey-container-grizzly2-http-2.3.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/hk2/external/javax.inject/2.2.0-b14/javax.inject-2.2.0-b14.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="C:/Users/viktor.yeliseyev/.m2/repository/org/glassfish/grizzly/grizzly-http-server/2.3.3/grizzly-http-server-2.3.3.jar"/>
