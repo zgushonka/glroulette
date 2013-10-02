@@ -65,7 +65,7 @@ public class Player {
 	private boolean isAuthentified = false;
 	
 	public boolean isPasswordOk (String password) {
-		isAuthentified = ( this.password == password );
+		isAuthentified = ( this.password.equals(password) );
 		return isAuthentified;
 	}	
 	
