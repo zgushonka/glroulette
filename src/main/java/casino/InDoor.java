@@ -98,7 +98,14 @@ public class InDoor {
 		catch (ValidationException vex) {
 			answer = ANSWER_BAD;
 			reason = vex.getMessage();
-			//return response = new BetResponse (userid, command, answer, reason );
+			return new BetResponse( request.getUserid(),
+	                "bet request",
+	                answer,
+	                request.getTableType(),
+	                request.getStake(),
+	                request.getNumber(),
+	                request.getBetType(), 
+	                reason);
 		}
 		
 		// if we a here then Bet created successfully
