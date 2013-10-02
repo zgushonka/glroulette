@@ -145,7 +145,7 @@ public class Croupie {
     }
     
     
-    private void performGameMove () {
+    public void performGameMove () {
     	
     	int winNumber = isManualSpin() ?
     			manualSpinNumber :
