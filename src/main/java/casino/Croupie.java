@@ -74,8 +74,14 @@ public class Croupie {
     }
 
     
-    private boolean isBetNewForPlayer(Bet bet, UUID playerId) {
-    	return !playerBets.get(playerId).contains(bet.getBetCode());
+    private boolean isBetNewForPlayer(Bet bet, UUID playerId)
+    {
+    	Set<Integer> betCodesSet = playerBets.get(playerId);
+    	Integer newBetCode = bet.getBetCode();
+    	boolean betExist = betCodesSet.contains(newBetCode);
+    	boolean betIsNew = !betExist;
+    	
+    	return betIsNew;
 	}
 
 	public void flushAllPlayers ()
