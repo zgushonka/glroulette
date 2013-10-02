@@ -91,7 +91,7 @@ public class InDoor {
 			}
 			else {
 				//	ERORR
-				System.out.println( "Wrong Bet Type: "+request.getBetType()+ " from player: " +request.getPlayerName() );
+			    throw new ValidationException("Wrong Bet Type: "+request.getBetType()+ " from player: " +request.getPlayerName() );
 			}
 			
 		}
