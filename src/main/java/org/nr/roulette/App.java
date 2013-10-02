@@ -2,6 +2,8 @@ package org.nr.roulette;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +27,8 @@ public class App {
     private static String BASE_URI = "http://localhost:portnumber/casino/";
 
     public static void main(String[] args) {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        //service.scheduleAtFixedRate(new Runnable() {@Override public void run() {Croupie.newInstance().getGold();}}, 0, 1, TimeUnit.SECONDS);
         try {
             if (args.length > 0)
             {
