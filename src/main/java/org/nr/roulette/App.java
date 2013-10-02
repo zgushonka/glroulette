@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,8 +28,12 @@ public class App {
     private static String BASE_URI = "http://localhost:portnumber/casino/";
 
     public static void main(String[] args) {
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        //service.scheduleAtFixedRate(new Runnable() {@Override public void run() {Croupie.newInstance().getGold();}}, 0, 1, TimeUnit.SECONDS);
+        
+        // args[0] application port
+        // args[1] mode: "true" -> isManual, anyOther or missing -> not manual
+        
+        boolean isManual = false;
+        
         try {
             if (args.length > 0)
             {
@@ -37,7 +42,34 @@ public class App {
             {
                 BASE_URI = BASE_URI.replaceFirst("portnumber", "9999");
             }            
+            
+            if (args.length > 1)
+            {
+                isManual = Boolean.valueOf(args[1]);
+            }
+            
+            System.out.println("isManual" + isManual);
+            
             final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), createApp());
+
+            
+            
+            // Concurrent timer implementation
+            final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+            service.scheduleAtFixedRate(new Runnable() {
+                @Override
+                public void run() {
+                    if (!server.isStarted())
+                    {
+                        // If the HTTP server is not running kill the Executor thread also
+                        service.shutdown();
+                    }
+                    Croupie.newInstance().performGameMove();
+                    
+                }
+            }, 0, 5, TimeUnit.SECONDS);
+            
+            
             System.out.println("Listening URI is " + BASE_URI);
             System.out.println("Rules can be found on " + BASE_URI + "rules");
             System.out.println("Game stats can be obtained from " + BASE_URI + "stats");
