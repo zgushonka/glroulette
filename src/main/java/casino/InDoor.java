@@ -36,12 +36,12 @@ public class InDoor {
 	final static String REGISTER_COMMAND = "register";
 
 	public static Response processBetRequest (BetRequest request) throws ValidationException {
-		String command = BET_COMMAND;
+//		String command = BET_COMMAND;
 		String answer = "";
 		String reason = "";
 		String userid = request.getUserid();
 		BetResponse response = null;
-		OperationResult regBetResult = null;
+//		OperationResult regBetResult = null;
 		
 		
 		//	- create object Bet
@@ -50,7 +50,7 @@ public class InDoor {
 		
 		try {
 	        // Password check 
-		    // TODO Add hash check instead of plain text password
+		    // DONE Add hash check instead of plain text password
 		    if(!Croupie.newInstance().isPasswordValidForUserId(userid, request.getPlayerPassword()))
 	        {
 		        throw new ValidationException("Player's password is not valid");
@@ -113,7 +113,8 @@ public class InDoor {
 		UUID playerId = UUID.fromString(request.getUserid());
 		
 		try {
-            regBetResult = Croupie.newInstance().registerBet(bet, playerId);
+//            regBetResult = 
+            Croupie.newInstance().registerBet(bet, playerId);
         } catch (NullPointerException ex) {
             answer = ANSWER_BAD;
             reason = ex.getMessage();

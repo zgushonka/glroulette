@@ -11,6 +11,9 @@ public class Player {
 	private final UUID id = UUID.randomUUID();
 	private int money;
 	
+	private int betCount;
+	private int winBetCount;
+	
 	public String getPassword()
 	{
 	    return password;
@@ -28,6 +31,8 @@ public class Player {
 		this.name = name;
 		this.password = password;
 		money = 0;
+		betCount = 0;
+		winBetCount = 0;
 	}
 	
 	
@@ -75,6 +80,24 @@ public class Player {
 	public boolean isPasswordOk (String password) {
 		isAuthentified = ( this.password.equals(password) );
 		return isAuthentified;
+	}
+
+
+	public int getBetCount() {
+		return betCount;
+	}
+	
+	protected void incrementBetCount() {
+		betCount++;
+	}
+
+
+	public int getWinBetCount() {
+		return winBetCount;
+	}
+	
+	protected void incrementWinBetCount() {
+		winBetCount++;
 	}	
 	
 }

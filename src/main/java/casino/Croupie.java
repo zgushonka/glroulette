@@ -101,6 +101,8 @@ public class Croupie {
         bets.add(bet);
         betsToPlayer.put(betID, playerId);
         playerBets.get(playerId).add(betCode);
+        
+        players.get(playerId).incrementBetCount();
     }
     
     
