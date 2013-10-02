@@ -16,14 +16,19 @@ import bets.Bet;
 public class Croupie {
     
     private static Croupie myOwnCroupieWithBlackJack = null;
+    private static Integer manualSpinNumber = null;
+    private static Roulette roulette = null;
     
     private Croupie() {}
     
     // Singleton
     public synchronized static Croupie newInstance() {
-        if (myOwnCroupieWithBlackJack == null)
+        if (myOwnCroupieWithBlackJack == null) {
             myOwnCroupieWithBlackJack = new Croupie();
-        return myOwnCroupieWithBlackJack;
+            roulette = new Roulette();
+            manualSpinNumber = new Integer(0);
+        }
+        return myOwnCroupieWithBlackJack; // and whores
     }
 
     
@@ -108,14 +113,15 @@ public class Croupie {
     
     private boolean enableManualSpin;   
     
-    public boolean isManualSpin()
+    private boolean isManualSpin()
     {
         return enableManualSpin;
     }
 
-    public void setManualSpin(boolean manualSpin)
+    public void setManualSpin(boolean manualSpin, int number)
     {
         this.enableManualSpin = manualSpin;
+        manualSpinNumber = number;
     }
 
     public boolean isPasswordValidForUserId(String userid, String password) {
@@ -138,6 +144,26 @@ public class Croupie {
         
     }
     
+    
+    private void performGameMove () {
+    	
+    	int winNumber = isManualSpin() ?
+    			manualSpinNumber :
+    			roulette.performSpin();
+    	
+    	//	for each bets {
+    	//		playerBetResult = bet.calcBetResult(winNumber);
+    	//		store bet player
+    	//		player.applyBetResult(playerBetResult);
+    	//		if (win) player.incrementWinBetCount();
+    	//	}
+    	//	
+    	//	bets.clear();
+    	//	betsToPlayer.clear();
+    	//	playerBets.clear(); - set betCodes.clear()
+    	//	   	
+    	
+    }
     
     
 /*  
