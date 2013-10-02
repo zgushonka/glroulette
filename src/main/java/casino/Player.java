@@ -11,9 +11,17 @@ public class Player {
 	private final UUID id = UUID.randomUUID();
 	private int money;
 	
+	public String getPassword()
+	{
+	    return password;
+	}
+	
 	
 	public Player(String name, String password)  throws ValidationException{
 		
+	    // Ask croupie if this player has already been created with other UUID
+	    //Croupie.newInstance().checkPlayerExists(name);
+	    
 		checkNameString(name);
 		checkPasswordString(password);
 		
@@ -23,6 +31,7 @@ public class Player {
 	}
 	
 	
+	//TODO request is processed incorrectly when user name or user password are absent or null or empty strings: need to check them in request
 	private void checkNameString (String name) throws ValidationException {
 	    if (name == null ) {
             throw new ValidationException("Name should not be null");
@@ -59,7 +68,6 @@ public class Player {
 	protected void applyBetResult(int result) {
 		this.money += result;
 	}
-	
 	
 
 	private boolean isAuthentified = false;

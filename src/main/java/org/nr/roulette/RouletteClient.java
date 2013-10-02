@@ -29,9 +29,10 @@ public class RouletteClient {
         
         
         out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
-        		"            <client session=\"V0ja3a2B7ZtklPqb\" user_id=\"1def843d-2405-46d5-bb5f-e6ebe6858e93\" password=\"password\" command=\"bet\">" + 
-        		"            <bet type=\"StrightBet\" value=\"36\" coins=\"10\" />" + 
-        		"            </client>");
+                "<client session=\"V0ja3a2B7ZtklPqb\" " +
+                "user_id=\"d4f87539-a709-4622-a61d-ef72a60ee36b\" password=\"password\" command=\"bet\">" + 
+                "<bet type=\"StrightBet\" value=\"36\" coins=\"10\" />" + 
+                "</client>");
 //        
 //        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><client session=\"V0ja3a2B7ZtklPqb\" uname=\"username\" password=\"password\" command=\"spin\" />");
 //        
@@ -41,9 +42,9 @@ public class RouletteClient {
 //        		"password=\"password\" " +
 //        		"command=\"get stats\" />");
 //        
-//        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" + 
-//        		"        <client session=\"V0ja3a2B7ZtklPqb\" password=\"password\" command=\"bet\">\r\n" + 
-//        		"        <bet type=\"number\" number=\"42\" coins=\"42\"/>\r\n" + 
+//        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
+//        		"        <client session=\"V0ja3a2B7ZtklPqb\" password=\"password\" command=\"bet\">" + 
+//        		"        <bet type=\"number\" number=\"42\" coins=\"42\"/>" + 
 //        		"        </client>");
 //        
 //        

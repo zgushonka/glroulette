@@ -53,9 +53,8 @@ public class InDoor {
 		    // TODO Add hash check instead of plain text password
 		    if(!Croupie.newInstance().isPasswordValidForUserId(userid, request.getPlayerPassword()))
 	        {
-	            throw new ValidationException("Player's password is not valid");
+		        throw new ValidationException("Player's password is not valid");
 	        }		    
-		    
 		    
 			if ( request.getBetType().equals("StrightBet" )) {
 				bet = new StrightBet(request.getNumber(), request.getStake() );
@@ -139,7 +138,6 @@ public class InDoor {
 		try {
 			String nameFromRequest = request.getPlayerName();
 			String passwordFromRequest = request.getPlayerPassword();
-			
 			player = new Player(nameFromRequest, passwordFromRequest);
 		}
 		catch (ValidationException vex) {

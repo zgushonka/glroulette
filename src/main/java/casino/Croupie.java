@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import org.nr.roulette.exceptions.ValidationException;
+
 import bets.Bet;
 
 
@@ -40,22 +42,19 @@ public class Croupie {
     
     public OperationResult registerPlayer(Player player)
     {	
-    	boolean playerRegistered = players.containsKey( player.getId() );
-    	if (!playerRegistered)
-    	    { 
-    	        players.put(player.getId(), player);
-    	    }
-    	else
-    	{
-    		//	Create and Assign Set of BetCodes
-    		Set<Integer> betCodesSet = new HashSet<Integer>();
-    		playerBets.put(player.getId(), betCodesSet);
-    		return OperationResult.PLAYER_REGISTERED;
-    	}
-    	// else
-        return OperationResult.PLAYER_ALREADY_REGISTERED;
+        OperationResult res = OperationResult.PLAYER_ALREADY_REGISTERED;
+        if (!players.containsKey(player.getId())) {
+            players.put(player.getId(), player);
+            
+            // Create and Assign Set of BetCodes
+            Set<Integer> betCodesSet = new HashSet<Integer>();
+            
+            playerBets.put(player.getId(), betCodesSet);
+            
+            res = OperationResult.PLAYER_REGISTERED;
+        }
+        return res;
     }
-    
     
     public OperationResult registerBet(Bet bet, UUID playerId)
     {
@@ -112,11 +111,23 @@ public class Croupie {
     }
 
     public boolean isPasswordValidForUserId(String userid, String password) {
-        if (players.containsKey(userid))
+       System.out.println(userid);
+        if (players.containsKey(UUID.fromString(userid)))
         {
-            return players.get(userid).isPasswordOk(password);
+            return players.get(UUID.fromString(userid)).isPasswordOk(password);
         }
         return false;
+    }
+
+    public void checkPlayerExists(String name) throws ValidationException {
+        for (Player aPlayer : players.values())
+        {
+            if (aPlayer.getName().equals(name) )
+            {
+                throw new ValidationException("The player with name " + name + " already exists. Please choose another name");
+            }
+        }
+        
     }
     
     
