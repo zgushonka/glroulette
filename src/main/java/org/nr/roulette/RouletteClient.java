@@ -25,14 +25,11 @@ public class RouletteClient {
         
 //Register
 //innerPart = "<client command=\"register\"> <user name=\"Some_username_here\"/> <password value=\"password\" />  <password confirmation=\"password\" />"; 
-// Spin
-innerPart = "<client user_id=\"279e8595-1cb0-48ad-baea-49e1cf1f1e1a\" name=\"Some_username_here\" password=\"password\" command=\"spin\" >";        
-        
-//        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
-//                "<client session=\"V0ja3a2B7ZtklPqb\" " +
-//                "user_id=\"d4f87539-a709-4622-a61d-ef72a60ee36b\" password=\"password\" command=\"bet\">" + 
-//                "<bet type=\"StrightBet\" value=\"36\" coins=\"10\" />" + 
-//                "</client>");
+//Bet         
+//innerPart = "<client user_id=\"232d7bdc-74c1-42c1-9d91-38ef30f9ab1c\" password=\"password\" command=\"bet\"><bet type=\"StrightBet\" value=\"36\" coins=\"10\" />";
+//Spin
+innerPart = "<client user_id=\"232d7bdc-74c1-42c1-9d91-38ef30f9ab1c\" name=\"Some_username_here\" password=\"password\" command=\"spin\" >";        
+
 //        
 //        
 //        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
