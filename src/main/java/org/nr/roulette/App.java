@@ -71,6 +71,8 @@ public class App {
             final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), createApp());
             
             
+            if (!isManual)
+            {
             // Concurrent timer implementation
             final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
             service.scheduleAtFixedRate(new Runnable() {
@@ -85,6 +87,7 @@ public class App {
                     
                 }
             }, 0, 5, TimeUnit.SECONDS);
+            }
             
             
             System.out.println("Listening URI is " + BASE_URI);
