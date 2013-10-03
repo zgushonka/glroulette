@@ -118,7 +118,7 @@ public class Croupie {
         return enableManualSpin;
     }
 
-    public void setManualSpin(boolean manualSpin, int number)
+    public void setManualSpin(boolean manualSpin, Integer number)
     {
         this.enableManualSpin = manualSpin;
         manualSpinNumber = number;
