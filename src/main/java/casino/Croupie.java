@@ -92,10 +92,14 @@ public class Croupie {
 	public void flushAllPlayers ()
     {
         players.clear();
-        bets.clear();
+        flushAllBets();
+    }
+
+	private void flushAllBets() {
+		bets.clear();
         betsToPlayer.clear();
         playerBets.clear();
-    }   
+	}   
     
     
     protected void addBet(Bet bet, UUID playerId)
@@ -145,40 +149,40 @@ public class Croupie {
     
     
     public void performGameMove () {
-    	
-        
-        
+  	
+//    	select win number
     	int winNumber = isManualSpin() ?
     			manualSpinNumber :
     			roulette.performSpin();
     	
-    	//	for each bets {
-    	//		playerBetResult = bet.calcBetResult(winNumber);
-    	//		store bet player
-    	//		player.applyBetResult(playerBetResult);
-    	//		if (win) player.incrementWinBetCount();
-    	//	}
-    	//	
-    	//	bets.clear();
-    	//	betsToPlayer.clear();
-    	//	playerBets.clear(); - set betCodes.clear()
-    	//
+//    	proceed all bets
+    	for (Bet currentBet : bets) {
+			
+//    		calculate win/loose coins
+    		int betResult = currentBet.calcBetResult(winNumber);
+    		
+ //    		store bet player
+    		UUID currentPlayerId = betsToPlayer.get(currentBet.getId());
+    		Player currentPlayer = players.get(currentPlayerId);
+    		    		
+    		currentPlayer.applyBetResult(betResult);
+    		
+    		boolean betWins = betResult > 0;
+    		if (betWins) {
+    			currentPlayer.incrementWinBetCount();
+    		}
+		}
     	
+//    	clear bet arrays
+    	flushAllBets();
+//    	? betCodes.clear
     }
     
-    
-/*  
-    protected void playGame () {
-        //
-        Iterator<Bets> 
-    }
-/*  */
-    
-    // all TODO
-    // force roulette Spin
-        //  with time period 5s             - prime table
-        //  by user command "all bets done" - test table
-    
-    // calculate wins
     
 }
+
+
+
+
+
+
