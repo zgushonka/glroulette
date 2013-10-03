@@ -35,7 +35,6 @@ public class App {
         // args[2] number for setManualSpin
         
         // Checking and setting port number argument
-        System.out.println("X1");
         try {
             if (args.length > 0)
             {
@@ -46,7 +45,6 @@ public class App {
                 }
             }
             BASE_URI = BASE_URI.replaceFirst("portnumber", portnumber.toString());
-            System.out.println("X2");
             
             
             // Checking and setting "manual mode" argument and "number" argument 
@@ -70,8 +68,6 @@ public class App {
                     System.out.println("This Roulette application will run in manual mode without automatical spins");
                 }
             }
-            System.out.println("X3");
-            System.out.println("Listening URI is " + BASE_URI);
             final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), createApp());
             
             
