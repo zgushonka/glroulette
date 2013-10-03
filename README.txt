@@ -15,6 +15,11 @@ java -jar glroulette.jar port true
 	You cannot use form "java -jar glroulette.jar true". Whenever manual mode parameter is given it should go after the port number.
 	Any value except of true (not case sensitive) is considered as false as well as absence of the parameter and tells application to run in non-manual mode with automatical spins.
 	
+java -jar glroulette.jar port true success_number
+	Application starts in manual mode on the given port. Success_number integer value is passed to the Croupie.setManualSpin(mode, number) as a second argument.
+	The valid value should be provided for this parameter for testing.
+	e.g. java -jar glroulette.jar 22213 true 23
+
 	
 	
 	 

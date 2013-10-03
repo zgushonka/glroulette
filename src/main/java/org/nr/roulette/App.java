@@ -22,34 +22,53 @@ import casino.Croupie;
  */
 public class App {
 
-    Croupie cr = Croupie.newInstance();
-    
-    
+    private static Croupie croupie = Croupie.newInstance();
     private static String BASE_URI = "http://localhost:portnumber/casino/";
+    private static boolean isManual = false;
+    private static Integer portnumber = 9999;
+    
 
     public static void main(String[] args) {
         
         // args[0] application port
         // args[1] mode: "true" -> isManual, anyOther or missing -> not manual
+        // args[2] number for setManualSpin
         
-        boolean isManual = false;
-        
+        // Checking and setting port number argument
         try {
             if (args.length > 0)
             {
-                BASE_URI = BASE_URI.replaceFirst("portnumber", args[0]);
-            } else
-            {
-                BASE_URI = BASE_URI.replaceFirst("portnumber", "9999");
-            }            
+                try {
+                    portnumber = Integer.valueOf(args[2]);
+                } catch (NumberFormatException e) {
+                    System.out.println("Cannot parse the first parameter (port number). It should be an integer if given. The default port 9999 will be used");
+                }
+                BASE_URI = BASE_URI.replaceFirst("portnumber", portnumber.toString());
+            }          
             
+            
+            // Checking and setting "manual mode" argument and "number" argument 
             if (args.length > 1)
             {
                 isManual = Boolean.valueOf(args[1]);
+                if (isManual)
+                {
+                    Integer number = null;
+                    if (args.length > 2)
+                    {
+                        try {
+                            number = Integer.valueOf(args[2]);
+                        } catch (NumberFormatException e) {
+                            System.out.println("The third parameter should be an integer if given. Terminating");
+                            System.exit(1);
+                        }
+                        
+                    }
+                    croupie.setManualSpin(true, number);
+                    System.out.println("This Roulette application will run in manual mode without automatical spins");
+                }
             }
-            
             final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), createApp());
-
             
             
             // Concurrent timer implementation
@@ -62,7 +81,7 @@ public class App {
                         // If the HTTP server is not running kill the Executor thread also
                         service.shutdown();
                     }
-                    Croupie.newInstance().performGameMove();
+                    croupie.performGameMove();
                     
                 }
             }, 0, 5, TimeUnit.SECONDS);
