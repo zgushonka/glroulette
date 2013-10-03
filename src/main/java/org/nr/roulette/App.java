@@ -86,9 +86,8 @@ public class App {
                     croupie.performGameMove();
                     
                 }
-            }, 0, 5, TimeUnit.SECONDS);
+            }, 10, 5, TimeUnit.SECONDS);
             }
-            System.out.println("X4");
             
             
             System.out.println("Listening URI is " + BASE_URI);
