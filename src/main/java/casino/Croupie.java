@@ -147,6 +147,8 @@ public class Croupie {
     
     public void performGameMove () {
     	
+        
+        
     	int winNumber = isManualSpin() ?
     			manualSpinNumber :
     			roulette.performSpin();
@@ -161,7 +163,8 @@ public class Croupie {
     	//	bets.clear();
     	//	betsToPlayer.clear();
     	//	playerBets.clear(); - set betCodes.clear()
-    	//	   	
+    	//
+    	System.out.println("Spin performed");
     	
     }
     
