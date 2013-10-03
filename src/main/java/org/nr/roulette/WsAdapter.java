@@ -20,6 +20,8 @@ import talk.RegisterRequest;
 import talk.RegisterResponse;
 import talk.Request;
 import talk.Response;
+import talk.SpinRequest;
+import talk.SpinResponse;
 import casino.InDoor;
 
 @Path("/")
@@ -75,6 +77,12 @@ public class WsAdapter {
                 BetResponse betResp = (BetResponse) InDoor.processBetRequest((BetRequest) request);                
                 response = betResp; 
             }
+            else if (request  instanceof SpinRequest)
+            {
+                SpinResponse spinResp = (SpinResponse) InDoor.processSpinRequest((SpinRequest) request);                
+                response = spinResp; 
+            }            
+            
             
         } catch (ParserConfigurationException e) {
             e.printStackTrace();

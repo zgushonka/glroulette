@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 import talk.BetRequest;
 import talk.RegisterRequest;
 import talk.Request;
+import talk.SpinRequest;
 
 public class RequestFactory {
     
@@ -21,10 +22,14 @@ public class RequestFactory {
     
     public static Document parseRequestXml(String xml) throws ParserConfigurationException, SAXException, IOException {
         Document doc = null;
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        doc = documentBuilder.parse(new ByteArrayInputStream(xml.getBytes("utf-8")));
-        doc.getDocumentElement().normalize();
+        try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            doc = documentBuilder.parse(new ByteArrayInputStream(xml.getBytes("utf-8")));
+            doc.getDocumentElement().normalize();            
+        } catch (Exception e) {
+        }
+
         return doc;
     }
 
@@ -32,13 +37,35 @@ public class RequestFactory {
         return doc.getElementsByTagName("client").item(0).getAttributes().getNamedItem("command").getTextContent();
     }
 
+    private static Request createSpinRequest(Document doc) {
+        String name = null;
+        String newPassword = null;
+        String id = null;
+        SpinRequest req = null;
+        
+        //<client name="username" user_id="someid" password="password" command="spin" />
+        name = doc.getElementsByTagName("client").item(0).getAttributes().getNamedItem("name").getTextContent();
+        newPassword = doc.getElementsByTagName("client").item(0).getAttributes().getNamedItem("password").getTextContent();
+        id = doc.getElementsByTagName("client").item(0).getAttributes().getNamedItem("user_id").getTextContent();
+        
+        try {
+            req = new SpinRequest(id, name, newPassword);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return req;
+    }    
+    
+    
     private static RegisterRequest createRegisterRequest(Document doc) {
         String name = null;
         String newPassword = null;
         RegisterRequest req = null;
         try {
             /*      
-            <client session="V0ja3a2B7ZtklPqb" command="register">
+            <client command="register">
             <user name="Some_username_here" />
             <password value="password" />
             </client>
@@ -91,7 +118,12 @@ public class RequestFactory {
     }
 
     public static Request createRequest(String xmlRequest) throws ParserConfigurationException, SAXException, IOException, ValidationException {
+         
         Document doc = RequestFactory.parseRequestXml(xmlRequest);
+        if (doc == null) {
+            throw new SAXException("Non valid request XML");
+        }
+
         Request req = null;
         String rqType = getRequestType(doc);
 
@@ -100,16 +132,19 @@ public class RequestFactory {
         } else if (rqType.equals("bet")) {
             req = createBetRequest(doc);
         } 
-/*        else if (rqType.equals("get stats")) {
-            req = createGetStatsRequest(doc);
-        }*/ 
+        else if (rqType.equals("spin")) {
+            System.out.println("Creating spin request");
+            req = createSpinRequest(doc);
+        } 
         else {
-            throw new ValidationException("The request type is not one of {register, bet, get stats}");
+            throw new ValidationException("The request type is not one of {register, bet, spin}");
 
         }
 
         return req;
     }
+
+
 
 
 }

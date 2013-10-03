@@ -177,6 +177,7 @@ public class Croupie {
 //    	clear bet arrays
     	flushAllBets();
 //    	? betCodes.clear
+    	System.out.println("Spin performed, manual is " + isManualSpin());
     }
     
     

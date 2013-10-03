@@ -20,34 +20,29 @@ public class RouletteClient {
         OutputStreamWriter out = new OutputStreamWriter(
             httpCon.getOutputStream());
         
-//        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-//        		"<client session=\"V0ja3a2B7ZtklPqb\" command=\"register\"> " + 
-//        		"<user name=\"Some_username_here\"/> " + 
-//        		"<password value=\"password\" />  " + 
-//        		"<password confirmation=\"password\" />" + 
-//        		"</client>");
+
+        String innerPart = "";
         
+//Register
+//innerPart = "<client command=\"register\"> <user name=\"Some_username_here\"/> <password value=\"password\" />  <password confirmation=\"password\" />"; 
+// Spin
+innerPart = "<client user_id=\"279e8595-1cb0-48ad-baea-49e1cf1f1e1a\" name=\"Some_username_here\" password=\"password\" command=\"spin\" >";        
         
-        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
-                "<client session=\"V0ja3a2B7ZtklPqb\" " +
-                "user_id=\"d4f87539-a709-4622-a61d-ef72a60ee36b\" password=\"password\" command=\"bet\">" + 
-                "<bet type=\"StrightBet\" value=\"36\" coins=\"10\" />" + 
-                "</client>");
+//        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
+//                "<client session=\"V0ja3a2B7ZtklPqb\" " +
+//                "user_id=\"d4f87539-a709-4622-a61d-ef72a60ee36b\" password=\"password\" command=\"bet\">" + 
+//                "<bet type=\"StrightBet\" value=\"36\" coins=\"10\" />" + 
+//                "</client>");
 //        
-//        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><client session=\"V0ja3a2B7ZtklPqb\" uname=\"username\" password=\"password\" command=\"spin\" />");
-//        
-//        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-//        		"<client session=\"V0ja3a2B7ZtklPqb\" " +
-//        		"uname=\"username\" " +
-//        		"password=\"password\" " +
-//        		"command=\"get stats\" />");
 //        
 //        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
 //        		"        <client session=\"V0ja3a2B7ZtklPqb\" password=\"password\" command=\"bet\">" + 
 //        		"        <bet type=\"number\" number=\"42\" coins=\"42\"/>" + 
 //        		"        </client>");
-//        
-//        
+        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+innerPart + "</client>");        
+
+        
+                
         
         out.close();
         BufferedReader in = new BufferedReader(new InputStreamReader(httpCon.getInputStream()));

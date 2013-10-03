@@ -9,6 +9,8 @@ import talk.BetResponse;
 import talk.RegisterRequest;
 import talk.RegisterResponse;
 import talk.Response;
+import talk.SpinRequest;
+import talk.SpinResponse;
 import bets.Bet;
 import bets.ColourBet;
 import bets.ColumnBet;
@@ -30,6 +32,7 @@ public class InDoor {
     
 	final static String ANSWER_OK = "OK";
 	final static String ANSWER_BAD = "Fail";
+	final static String PASSNOTVALID = "Player's password is not valid";
 	final static String NO_ID = "NO_ID";
 	
 	final static String BET_COMMAND = "NO_ID";
@@ -53,7 +56,7 @@ public class InDoor {
 		    // DONE Add hash check instead of plain text password
 		    if(!Croupie.newInstance().isPasswordValidForUserId(userid, request.getPlayerPassword()))
 	        {
-		        throw new ValidationException("Player's password is not valid");
+		        throw new ValidationException("PASSNOTVALID");
 	        }		    
 		    
 			if ( request.getBetType().equals("StrightBet" )) {
@@ -171,6 +174,20 @@ public class InDoor {
 				
 		return response;
 	}
+
+    public static SpinResponse processSpinRequest(SpinRequest request) {
+        String userid = request.getUserid();
+        SpinResponse response = null;
+
+        if (!Croupie.newInstance().isPasswordValidForUserId(userid, request.getPlayerPassword())) {
+            response = new SpinResponse(request.getUserid(), "spin", ANSWER_BAD, PASSNOTVALID);
+        } else {
+            Croupie.newInstance().performGameMove();
+            response = new SpinResponse(request.getUserid(), "spin", ANSWER_OK);
+
+        }
+        return response;
+    }
 		
 	
 	/*
