@@ -39,7 +39,7 @@ public class App {
             if (args.length > 0)
             {
                 try {
-                    portnumber = Integer.valueOf(args[2]);
+                    portnumber = Integer.valueOf(args[0]);
                 } catch (NumberFormatException e) {
                     System.out.println("Cannot parse the first parameter (port number). It should be an integer if given. The default port 9999 will be used");
                 }
