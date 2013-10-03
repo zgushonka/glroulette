@@ -39,12 +39,12 @@ public class App {
             if (args.length > 0)
             {
                 try {
-                    portnumber = Integer.valueOf(args[2]);
+                    portnumber = Integer.valueOf(args[0]);
                 } catch (NumberFormatException e) {
                     System.out.println("Cannot parse the first parameter (port number). It should be an integer if given. The default port 9999 will be used");
                 }
-                BASE_URI = BASE_URI.replaceFirst("portnumber", portnumber.toString());
-            }          
+            }
+            BASE_URI = BASE_URI.replaceFirst("portnumber", portnumber.toString());
             
             
             // Checking and setting "manual mode" argument and "number" argument 
@@ -88,6 +88,7 @@ public class App {
                 }
             }, 0, 5, TimeUnit.SECONDS);
             }
+            System.out.println("X4");
             
             
             System.out.println("Listening URI is " + BASE_URI);
