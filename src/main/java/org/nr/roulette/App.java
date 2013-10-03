@@ -48,8 +48,6 @@ public class App {
                 isManual = Boolean.valueOf(args[1]);
             }
             
-            System.out.println("isManual" + isManual);
-            
             final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), createApp());
 
             

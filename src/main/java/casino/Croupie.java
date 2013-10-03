@@ -125,7 +125,6 @@ public class Croupie {
     }
 
     public boolean isPasswordValidForUserId(String userid, String password) {
-       System.out.println(userid);
         if (players.containsKey(UUID.fromString(userid)))
         {
             return players.get(UUID.fromString(userid)).isPasswordOk(password);
@@ -164,7 +163,6 @@ public class Croupie {
     	//	betsToPlayer.clear();
     	//	playerBets.clear(); - set betCodes.clear()
     	//
-    	System.out.println("Spin performed");
     	
     }
     

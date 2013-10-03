@@ -133,8 +133,6 @@ public class InDoor {
 	}
 	
 	public static Response processRegisterRequest(RegisterRequest request){
-		System.out.println( "Register request received from "+request.getPlayerName() );
-						
 		// answer Strings
 		String userid;
 		String command = REGISTER_COMMAND;
@@ -160,8 +158,6 @@ public class InDoor {
 		OperationResult regPlayerResult = Croupie.newInstance().registerPlayer(player);
 		
 		if ( regPlayerResult == OperationResult.PLAYER_REGISTERED) {
-			System.out.println( "Player successfully registered: "+request.getPlayerName() );
-			
 			userid = player.getId().toString();
 			answer = ANSWER_OK;
 			response = new RegisterResponse (userid, command, answer);
