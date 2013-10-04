@@ -31,6 +31,7 @@ public class Croupie {
         return myOwnCroupieWithBlackJack; // and whores
     }
 
+    
     // list of bets for next Spin
     private List<Bet> bets = new ArrayList<Bet>();
 
@@ -43,6 +44,8 @@ public class Croupie {
     // Player BetCodes Set
     private Map<UUID, Set<Integer>> playerBets = new HashMap<UUID, Set<Integer>>();
 
+    
+    
     public OperationResult registerPlayer(Player player) {
         OperationResult res = OperationResult.PLAYER_ALREADY_REGISTERED;
         if (!players.containsKey(player.getId())) {
