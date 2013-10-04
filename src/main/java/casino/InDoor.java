@@ -139,12 +139,7 @@ public class InDoor {
                 userid = player.getId().toString();
                 answer = ANSWER_OK;
                 response = new RegisterResponse(userid, command, answer);
-            } else if (regPlayerResult == OperationResult.PLAYER_ALREADY_REGISTERED) {
-                userid = player.getId().toString();
-                answer = ANSWER_BAD;
-                String reason = "Error: Player already registered";
-                response = new RegisterResponse(userid, command, answer, reason);
-            }
+            } 
         }
 
         return response;

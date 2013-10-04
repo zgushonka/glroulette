@@ -31,7 +31,6 @@ public class Croupie {
         return myOwnCroupieWithBlackJack; // and whores
     }
 
-    
     // list of bets for next Spin
     private List<Bet> bets = new ArrayList<Bet>();
 
@@ -44,21 +43,13 @@ public class Croupie {
     // Player BetCodes Set
     private Map<UUID, Set<Integer>> playerBets = new HashMap<UUID, Set<Integer>>();
 
-    
-    
     public OperationResult registerPlayer(Player player) {
-        OperationResult res = OperationResult.PLAYER_ALREADY_REGISTERED;
-        if (!players.containsKey(player.getId())) {
-            players.put(player.getId(), player);
+        players.put(player.getId(), player);
 
-            // Create and Assign Set of BetCodes
-            Set<Integer> betCodesSet = new HashSet<Integer>();
-
-            playerBets.put(player.getId(), betCodesSet);
-
-            res = OperationResult.PLAYER_REGISTERED;
-        }
-        return res;
+        // Create and Assign Set of BetCodes
+        Set<Integer> betCodesSet = new HashSet<Integer>();
+        playerBets.put(player.getId(), betCodesSet);
+        return OperationResult.PLAYER_REGISTERED;
     }
 
     public OperationResult registerBet(Bet bet, UUID playerId) {
@@ -77,9 +68,17 @@ public class Croupie {
     }
 
     private boolean isBetNewForPlayer(Bet bet, UUID playerId) {
-        Set<Integer> betCodesSet = playerBets.get(playerId);
+
+        // Set<Integer> betCodesSet = playerBets.get(playerId);
+
         Integer newBetCode = bet.getBetCode();
-        boolean betExist = betCodesSet.contains(newBetCode);
+        // boolean betExist = betCodesSet.contains(newBetCode);
+        for (UUID id : playerBets.keySet()) {
+            System.out.println(id);
+            System.out.println(playerBets.get(id));
+        }
+
+        boolean betExist = playerBets.get(playerId).contains(newBetCode);
         boolean betIsNew = !betExist;
 
         return betIsNew;
@@ -93,7 +92,12 @@ public class Croupie {
     private void flushAllBets() {
         bets.clear();
         betsToPlayer.clear();
-        playerBets.clear();
+        //playerBets.clear();
+        for (UUID id : playerBets.keySet())
+        {
+            playerBets.get(id).clear();
+        }
+        
     }
 
     protected void addBet(Bet bet, UUID playerId) {
@@ -138,7 +142,8 @@ public class Croupie {
         // select win number
         int winNumber = 0;
 
-        // winNumber = isManualSpin() ? manualSpinNumber : roulette.performSpin();
+        // winNumber = isManualSpin() ? manualSpinNumber :
+        // roulette.performSpin();
         if (enableManualSpin) {
             if (manualSpinNumber != null) {
                 winNumber = manualSpinNumber;
