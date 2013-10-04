@@ -1,6 +1,7 @@
 package bets;
 
 import java.util.UUID;
+import java.lang.Object;
 
 import org.nr.roulette.exceptions.ValidationException;
 
@@ -146,14 +147,48 @@ public abstract class Bet {
 	
 	
 	
-	public boolean equals (Bet bet){
-		boolean sameClass = ( bet.getClass() ==  this.getClass() );
-		boolean samebetCode = ( this.getBetCode() == bet.getBetCode() );
+	public boolean equals (Object obj){
+        if (obj == null)
+            return false;
+        if (obj == this)
+            return true;
+        if (!(obj instanceof Bet))
+            return false;
+        
+		boolean sameClass = ( this.getClass() == obj.getClass() );
+		boolean samebetCode = ( this.getBetCode() == ((Bet) obj).getBetCode() );
 		
 		return sameClass && samebetCode;
+		
+		
+//		return new EqualsBuilder().
+//	            // if deriving: appendSuper(super.equals(obj)).
+//	            append(name, rhs.name).
+//	            append(age, rhs.age).
+//	            isEquals();
+		
+		
 	}
 	
+	public int hashCode() {
+        return new HashCodeBuilder(7, 53). // two randomly chosen prime numbers
+            // if deriving: appendSuper(super.hashCode()).
+            append(this.getClass()).
+            append(this.getBetCode()).
+            toHashCode();
+    }
+/*	
+	public boolean equals(Object obj) {
+
+        Person rhs = (Person) obj;
+        return new EqualsBuilder().
+            // if deriving: appendSuper(super.equals(obj)).
+            append(name, rhs.name).
+            append(age, rhs.age).
+            isEquals();
+    }
 	
+	*/
 }
 
 

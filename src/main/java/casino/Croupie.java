@@ -17,6 +17,7 @@ public class Croupie {
     private static Croupie myOwnCroupieWithBlackJack = null;
     private static Integer manualSpinNumber = null;
     private static Roulette roulette = null;
+    private static int totalSpins  = 0;
 
     private Croupie() {
     }
@@ -42,7 +43,7 @@ public class Croupie {
         res += "<HTML>\n<HEAD>\n" +
                 "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; CHARSET=UTF-8\"/>" +
                 "\n<TITLE>Roulette statistics</TITLE>" +
-                "<HEAD>\n<BODY>" +
+                "<HEAD>\n<BODY>\n" + "<P>TOTAL SPINS = " + totalSpins  + "</P>/n" + 
                 "<TABLE BORDER=\"1\" BORDERCOLOR=\"#006600\" STYLE=\"background-color:#FFFFCC\" WIDTH=\"100%\" CELLPADDING=\"3\" CELLSPACING=\"3\">\n";
 
         //table header
@@ -187,6 +188,7 @@ public class Croupie {
         // clear bet arrays
         flushAllBets();
         // ? betCodes.clear
+        totalSpins += 1;
 
     }
 
