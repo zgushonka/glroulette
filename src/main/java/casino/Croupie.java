@@ -37,6 +37,24 @@ public class Croupie {
     // map of registered players
     private Map<UUID, Player> players = new HashMap<UUID, Player>();
 
+    public String getStats() {
+        String res = "";
+        res += "<HTML>\n<HEAD>\n" +
+                "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; CHARSET=UTF-8\"/>" +
+                "\n<TITLE>Roulette statistics</TITLE>" +
+                "<HEAD>\n<BODY>" +
+                "<TABLE BORDER=\"1\" BORDERCOLOR=\"#006600\" STYLE=\"background-color:#FFFFCC\" WIDTH=\"100%\" CELLPADDING=\"3\" CELLSPACING=\"3\">\n";
+
+        //table header
+        res += "<TR><TD>Name</TD><TD>ID</TD><TD>MONEY</TD><TD>WINS</TD></TR>\n" ;
+        
+        for (Player pl : players.values()) {
+            res += "<TR><TD>" + pl.getName() + "</TD><TD>" + pl.getId() + "</TD><TD>" + pl.getMoney() + "</TD><TD>" + pl.getWinBetCount() + "</TD></TR>\n" ;
+        }
+        res += "\n</TABLE>\n</BODY>\n</HTML>";
+        return res;
+    }
+
     // binding bet to player
     private Map<UUID, UUID> betsToPlayer = new HashMap<UUID, UUID>();
 
@@ -92,12 +110,11 @@ public class Croupie {
     private void flushAllBets() {
         bets.clear();
         betsToPlayer.clear();
-        //playerBets.clear();
-        for (UUID id : playerBets.keySet())
-        {
+        // playerBets.clear();
+        for (UUID id : playerBets.keySet()) {
             playerBets.get(id).clear();
         }
-        
+
     }
 
     protected void addBet(Bet bet, UUID playerId) {

@@ -18,6 +18,7 @@ import talk.Request;
 import talk.Response;
 import talk.SpinRequest;
 import talk.SpinResponse;
+import casino.Croupie;
 import casino.InDoor;
 
 @Path("/")
@@ -93,6 +94,7 @@ public class WsAdapter {
     @Produces("text/html")
     public String getRules()
     {
+        
         // TODO: Add generation of a human-readable HTML page with rules here 
         String res = "<html><head>" +
                 "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/></head><title>GL Roulette Rules</title>" +
@@ -108,51 +110,7 @@ public class WsAdapter {
     @Produces("text/html")
     public String getStats()
     {
-        // TODO: Add generation of a human-readable HTML page with rules here 
-        String res = "<html><head>" +
-                "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/></head>" +
-                "<body><table border=\"1\" bordercolor=\"#006600\" style=\"background-color:#FFFFCC\" width=\"100%\" cellpadding=\"3\" cellspacing=\"3\">\n" + 
-                "    <tr>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "    </tr>\n" + 
-                "    <tr>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "    </tr>\n" + 
-                "    <tr>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "    </tr>\n" + 
-                "    <tr>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "    </tr>\n" + 
-                "    <tr>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "        <td>Table Cell</td>\n" + 
-                "    </tr>\n" + 
-                "</table>\n" + 
-                "\n" + 
-                "" +
-                "</body></html>";
-        
-        return res;
+        return Croupie.newInstance().getStats();
     }    
     
 }
