@@ -83,8 +83,10 @@ public class InDoor {
             }
 
             answer = ANSWER_OK;
+            
             UUID playerId = UUID.fromString(request.getUserid());
             Croupie.newInstance().registerBet(bet, playerId);
+            
             response = new BetResponse(request.getUserid(), 
                     "bet request", 
                     answer, 
@@ -95,13 +97,15 @@ public class InDoor {
                     reason);
             
         } catch (ValidationException vex) {
+            vex.printStackTrace();
             answer = ANSWER_BAD;
             reason = vex.getMessage();
-            return new BetResponse(request.getUserid(), "bet request", answer, request.getTableType(), request.getStake(), request.getNumber(), request.getBetType(), reason);
-        } catch (NullPointerException ex) {
-            System.out.println("XXXXXXXXXXXXXXXXXXXXXXX");
+            response = new BetResponse(request.getUserid(), "bet request", answer, request.getTableType(), request.getStake(), request.getNumber(), request.getBetType(), reason);
+        } catch (NullPointerException nex) {
+            nex.printStackTrace();
             answer = ANSWER_BAD;
-            reason = ex.getMessage();
+            reason = nex.getClass().getName() + " " + nex.getMessage();
+            response = new BetResponse(request.getUserid(), "bet request", answer, request.getTableType(), request.getStake(), request.getNumber(), request.getBetType(), reason);
         }
 
         return response;

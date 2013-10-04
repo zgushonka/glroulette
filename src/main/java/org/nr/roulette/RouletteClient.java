@@ -26,7 +26,7 @@ public class RouletteClient {
 //Register
 //innerPart = "<client command=\"register\"> <user name=\"Some_username_here\"/> <password value=\"password\" />"; 
 //Bet         
-innerPart = "<client user_id=\"de35c8dd-317e-49de-acc0-3e8248a40690\" password=\"password\" command=\"bet\"><bet type=\"StrightBet\" value=\"36\" coins=\"10\" />";
+innerPart = "<client user_id=\"50c57d94-9556-4010-a198-98c6a766ab68\" password=\"password\" command=\"bet\"><bet type=\"StrightBet\" value=\"36\" coins=\"10\" />";
 //Spin
 //innerPart = "<client user_id=\"5ad4ec71-78c1-4644-bf17-6eba319e46d8\" name=\"Some_username_here\" password=\"password\" command=\"spin\" >";        
 
