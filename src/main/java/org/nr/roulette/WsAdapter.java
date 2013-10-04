@@ -1,6 +1,5 @@
 package org.nr.roulette;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.ws.rs.Consumes;
@@ -9,13 +8,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.nr.roulette.exceptions.ValidationException;
-import org.xml.sax.SAXException;
 
 import talk.BetRequest;
 import talk.BetResponse;
+import talk.ExceptionResponse;
 import talk.RegisterRequest;
 import talk.RegisterResponse;
 import talk.Request;
@@ -81,17 +77,12 @@ public class WsAdapter {
             {
                 SpinResponse spinResp = (SpinResponse) InDoor.processSpinRequest((SpinRequest) request);                
                 response = spinResp; 
-            }            
+            }          
             
             
-        } catch (ParserConfigurationException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ValidationException e) {
-            e.printStackTrace();
+            response = new ExceptionResponse("", "", e.getClass().getName(), e.getMessage());
         }
         return response;
     }    

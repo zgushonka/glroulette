@@ -24,11 +24,11 @@ public class RouletteClient {
         String innerPart = "";
         
 //Register
-//innerPart = "<client command=\"register\"> <user name=\"Some_username_here\"/> <password value=\"password\" />  <password confirmation=\"password\" />"; 
+//innerPart = "<client command=\"register\"> <user name=\"Some_username_here\"/> <password value=\"password\" />"; 
 //Bet         
-//innerPart = "<client user_id=\"232d7bdc-74c1-42c1-9d91-38ef30f9ab1c\" password=\"password\" command=\"bet\"><bet type=\"StrightBet\" value=\"36\" coins=\"10\" />";
+innerPart = "<client user_id=\"de35c8dd-317e-49de-acc0-3e8248a40690\" password=\"password\" command=\"bet\"><bet type=\"StrightBet\" value=\"36\" coins=\"10\" />";
 //Spin
-innerPart = "<client user_id=\"232d7bdc-74c1-42c1-9d91-38ef30f9ab1c\" name=\"Some_username_here\" password=\"password\" command=\"spin\" >";        
+//innerPart = "<client user_id=\"5ad4ec71-78c1-4644-bf17-6eba319e46d8\" name=\"Some_username_here\" password=\"password\" command=\"spin\" >";        
 
 //        
 //        
@@ -36,9 +36,10 @@ innerPart = "<client user_id=\"232d7bdc-74c1-42c1-9d91-38ef30f9ab1c\" name=\"Som
 //        		"        <client session=\"V0ja3a2B7ZtklPqb\" password=\"password\" command=\"bet\">" + 
 //        		"        <bet type=\"number\" number=\"42\" coins=\"42\"/>" + 
 //        		"        </client>");
-        out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+innerPart + "</client>");        
 
-        
+        String theRequest = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+innerPart + "</client>";
+        System.out.println(theRequest);
+        out.write(theRequest);
                 
         
         out.close();

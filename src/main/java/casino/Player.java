@@ -21,10 +21,6 @@ public class Player {
 	
 	
 	public Player(String name, String password)  throws ValidationException{
-		
-	    // Ask croupie if this player has already been created with other UUID
-	    //Croupie.newInstance().checkPlayerExists(name);
-	    
 		checkNameString(name);
 		checkPasswordString(password);
 		
@@ -37,22 +33,27 @@ public class Player {
 	
 	
 	//TODO request is processed incorrectly when user name or user password are absent or null or empty strings: need to check them in request
-	private void checkNameString (String name) throws ValidationException {
-	    if (name == null ) {
-            throw new ValidationException("Name should not be null");
+	private void checkNameString (String sentName) throws ValidationException {
+	    if (sentName != null && !sentName.isEmpty() ) {
+	        if (sentName.length() < 4) {
+	            throw new ValidationException("Name is too short. The length is " + sentName.length() + " and should be longer than 3");
+	        }	        
         }
-	    if (name.length() < 4) {
-			throw new ValidationException("Name is too short. The length is " + name.length() + " and should be > 3");
-		}
+	    else {
+	        throw new ValidationException("Name should not be null");
+	    }
 	}
 	
-	private void checkPasswordString (String password)  throws ValidationException {
-		if (password == null ) {
+	
+	private void checkPasswordString (String sentPassword)  throws ValidationException {
+        if (sentPassword != null && !sentPassword.isEmpty()) {
+
+            if (sentPassword.length() < 6) {
+                throw new ValidationException("Password is too short. The length is " + sentPassword.length() + " and should be longer than 5");
+            }
+        } else {
             throw new ValidationException("Password should not be null");
         }
-	    if (password.length() < 6) {
-			throw new ValidationException("Password is too short. The length is " + name.length() + " and should be > 5");
-		}
 	}
 
 	
