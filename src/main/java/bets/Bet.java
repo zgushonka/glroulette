@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.nr.roulette.exceptions.ValidationException;
 
+
 //	Base Class for all Bets
 public abstract class Bet {
 
@@ -143,6 +144,14 @@ public abstract class Bet {
 		}
 	}
 	
+	
+	
+	public boolean equals (Bet bet){
+		boolean sameClass = ( bet.getClass() ==  this.getClass() );
+		boolean samebetCode = ( this.getBetCode() == bet.getBetCode() );
+		
+		return sameClass && samebetCode;
+	}
 	
 	
 }

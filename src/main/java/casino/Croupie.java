@@ -41,14 +41,14 @@ public class Croupie {
     private Map<UUID, UUID> betsToPlayer = new HashMap<UUID, UUID>();
 
     // Player BetCodes Set
-    private Map<UUID, Set<Integer>> playerBets = new HashMap<UUID, Set<Integer>>();
+    private Map<UUID, Set<Bet>> playerBets = new HashMap<UUID, Set<Bet> >();
 
     public OperationResult registerPlayer(Player player) {
         players.put(player.getId(), player);
 
         // Create and Assign Set of BetCodes
-        Set<Integer> betCodesSet = new HashSet<Integer>();
-        playerBets.put(player.getId(), betCodesSet);
+        Set<Bet> betsSet = new HashSet<Bet>();
+        playerBets.put(player.getId(), betsSet);
         return OperationResult.PLAYER_REGISTERED;
     }
 
@@ -69,18 +69,15 @@ public class Croupie {
 
     private boolean isBetNewForPlayer(Bet bet, UUID playerId) {
 
-        // Set<Integer> betCodesSet = playerBets.get(playerId);
-
-        Integer newBetCode = bet.getBetCode();
-        // boolean betExist = betCodesSet.contains(newBetCode);
-        for (UUID id : playerBets.keySet()) {
+    	for (UUID id : playerBets.keySet()) {
             System.out.println(id);
             System.out.println(playerBets.get(id));
         }
-
-        boolean betExist = playerBets.get(playerId).contains(newBetCode);
+        
+        Set<Bet> betsSet = playerBets.get(playerId);
+        boolean betExist = betsSet.contains(bet);
+        
         boolean betIsNew = !betExist;
-
         return betIsNew;
     }
 
@@ -102,18 +99,17 @@ public class Croupie {
 
     protected void addBet(Bet bet, UUID playerId) {
         UUID betID = bet.getId();
-        Integer betCode = bet.getBetCode();
 
         bets.add(bet);
         betsToPlayer.put(betID, playerId);
-        playerBets.get(playerId).add(betCode);
+        playerBets.get(playerId).add(bet);
 
         players.get(playerId).incrementBetCount();
     }
 
     private boolean enableManualSpin;
 
-    private boolean isManualSpin() {
+    public boolean isManualSpin() {
         return enableManualSpin;
     }
 
