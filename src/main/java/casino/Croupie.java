@@ -43,7 +43,8 @@ public class Croupie {
         res += "<HTML>\n<HEAD>\n" +
                 "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; CHARSET=UTF-8\"/>" +
                 "\n<TITLE>Roulette statistics</TITLE>" +
-                "<HEAD>\n<BODY>\n" + "<P>TOTAL SPINS = " + totalSpins  + "</P>/n" + 
+                "<HEAD>\n<BODY>\n" + "<P>TOTAL SPINS = " + totalSpins  + "</P>\n" + 
+                "<P>WIN NUMBER = " + roulette.getLastSpinResult()  + "</P>\n" +
                 "<TABLE BORDER=\"1\" BORDERCOLOR=\"#006600\" STYLE=\"background-color:#FFFFCC\" WIDTH=\"100%\" CELLPADDING=\"3\" CELLSPACING=\"3\">\n";
 
         //table header

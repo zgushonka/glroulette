@@ -16,4 +16,10 @@ public class StrightBet extends Bet {
 		return number;
 	}
 	
+	@Override 
+	public int hashCode()
+	{
+	    return 1000 + getBetCode();
+	}
+	
 }

@@ -6,7 +6,7 @@ import org.nr.roulette.exceptions.ValidationException;
 
 
 //	Base Class for all Bets
-public abstract class Bet {
+public abstract class Bet  {
 
 	//	returns stake*rate if win
 	//	OR  
@@ -145,13 +145,15 @@ public abstract class Bet {
 	}
 	
 	
-	
 	public boolean equals (Bet bet){
-		boolean sameClass = ( bet.getClass() ==  this.getClass() );
-		boolean samebetCode = ( this.getBetCode() == bet.getBetCode() );
-		
-		return sameClass && samebetCode;
+//		boolean sameClass = ( bet.getClass() ==  this.getClass() );
+//		boolean samebetCode = ( this.getBetCode() == bet.getBetCode() );
+//		
+		//return sameClass && samebetCode;
+	    return bet.hashCode() == this.hashCode();
 	}
+	
+	
 	
 	
 }
