@@ -28,6 +28,10 @@ public class DozenBet extends Bet {
 		return sector;
 	}
 	
+    public int hashCode() {
+        return 5000 + getBetCode();
+    }	
+	
 }
 
 //	1/3 numbers bet  1..12  13..24  25..36

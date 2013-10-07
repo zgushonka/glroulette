@@ -16,7 +16,11 @@ public class HalfBet extends Bet {
 			return 0;
 		}
 		return 1;
-	}	
+	}
+	
+    public int hashCode() {
+        return 6000 + getBetCode();
+    }
 
 }
 

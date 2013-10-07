@@ -23,6 +23,10 @@ public class ColourBet extends Bet {
 		// return 1 for black
 		// return 0 for red
 	}
+	
+    public int hashCode() {
+        return 2000 + getBetCode();
+    }	
 
 }
 

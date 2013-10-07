@@ -31,7 +31,10 @@ public class CornerBet extends SmallSectorBet {
 		
 		return betWin;
 	}
-	
+
+    public int hashCode() {
+        return 4000 + getBetCode();
+    }
 }
 
 //	4 number bet (e.g. 1+2+4+5, 20+21+23+34)

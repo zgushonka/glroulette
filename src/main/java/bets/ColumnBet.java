@@ -17,6 +17,10 @@ public class ColumnBet extends Bet {
 		int column = (number - 1) % 3;
 		return column;
 	}
+	
+    public int hashCode() {
+        return 3000 + getBetCode();
+    }	
 
 }
 

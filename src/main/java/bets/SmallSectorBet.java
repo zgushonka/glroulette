@@ -39,4 +39,8 @@ public abstract class SmallSectorBet extends Bet {
 		return (getBetCode() + shift) == getWinningNumber();
 	}
 	
+    public int hashCode() {
+        return 9000 + getBetCode();
+    }
+	
 }

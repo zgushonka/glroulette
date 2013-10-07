@@ -19,7 +19,7 @@ public class StrightBet extends Bet {
 
     @Override
     public int hashCode() {
-        return (int) 1000 + getBetCode();
+        return 1000 + getBetCode();
     }
 
     public static void main(String[] args) throws ValidationException {

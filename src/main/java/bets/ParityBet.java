@@ -18,4 +18,8 @@ public class ParityBet extends Bet {
 		// odd  = 1
 	}
 	
+    public int hashCode() {
+        return 8000 + getBetCode();
+    }
+	
 }

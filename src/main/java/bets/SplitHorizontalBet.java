@@ -25,6 +25,10 @@ public class SplitHorizontalBet extends SmallSectorBet {
 		
 		return betWin;
 	}
+	
+    public int hashCode() {
+        return 10000 + getBetCode();
+    }
 
 	
 }

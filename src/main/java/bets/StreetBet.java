@@ -17,6 +17,10 @@ public class StreetBet extends Bet {
 		int street = (number - 1) / 3;
 		return street;
 	}
+	
+    public int hashCode() {
+        return 12000 + getBetCode();
+    }
 
 }
 

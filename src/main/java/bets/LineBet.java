@@ -18,6 +18,10 @@ public class LineBet extends Bet {
 		return line;
 	}
 
+    public int hashCode() {
+        return 7000 + getBetCode();
+    }
+	
 }
 
 //	6 numbers bet
