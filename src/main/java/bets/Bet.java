@@ -158,8 +158,14 @@ public abstract class Bet  {
 	    return false;
 	}
 
-	
-	
+	/*
+	public int hashCode() {
+        return new HashCodeBuilder(17, 31).
+            append(this.getClass()).
+            append(this.getBetCode()).
+            toHashCode();
+    }
+	*/
 }
 
 
