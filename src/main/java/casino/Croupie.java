@@ -72,19 +72,19 @@ public class Croupie {
         return OperationResult.PLAYER_REGISTERED;
     }
 
-    public OperationResult registerBet(Bet bet, UUID playerId) {
+    public OperationResult registerBet(Bet bet, UUID playerId) throws ValidationException, NullPointerException {
         // - check player is registered
         if (!players.containsKey(playerId)) {
             throw new NullPointerException("Player with ID=" + playerId + " is not registered");
         }
 
         // - check bet unique for player
-        if (isBetNewForPlayer(bet, playerId)) {
-            addBet(bet, playerId);
-            return OperationResult.BET_OK;
+        if (!isBetNewForPlayer(bet, playerId)) {
+            throw new ValidationException("This bet has been already done");
         }
-        // else
-        return OperationResult.BET_WRONG;
+
+        addBet(bet, playerId);
+        return OperationResult.BET_OK;
     }
 
     private boolean isBetNewForPlayer(Bet bet, UUID playerId) {
