@@ -144,16 +144,20 @@ public abstract class Bet  {
 		}
 	}
 	
-	
-	public boolean equals (Bet bet){
+
+
+	@Override
+	public boolean equals (Object candidate){
 //		boolean sameClass = ( bet.getClass() ==  this.getClass() );
 //		boolean samebetCode = ( this.getBetCode() == bet.getBetCode() );
-//		
 		//return sameClass && samebetCode;
-	    return bet.hashCode() == this.hashCode();
+	    if (candidate instanceof Bet)
+	    {
+	        return ((Bet) candidate).hashCode() == this.hashCode();
+	    }
+	    return false;
 	}
-	
-	
+
 	
 	
 }
