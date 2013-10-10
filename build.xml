@@ -5,7 +5,7 @@
     <!--ANT 1.7 is required                                        -->
     
     
-    <!-- redefine the mavenRepoDir which is typically in c:/users/[username]/.m2/repository for Windows -->
+    <!-- redefined the mavenRepoDir which is typically in c:/users/[username]/.m2/repository for Windows -->
     <property name="mavenRepoDir" value="C:/Users/username/.m2/repository"/>
     
     
