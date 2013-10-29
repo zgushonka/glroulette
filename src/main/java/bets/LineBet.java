@@ -16,8 +16,8 @@ public class LineBet extends SmallSectorBet {
 		
 		int betNumber = number;
 		betNumber = correctStreet(betNumber);
-		// shift to zero and divide to line count
-		int lineHeadNumber = (number - 1) / 3;
+
+		int lineHeadNumber = betNumber - ( (betNumber-1) % 3 );
 		return lineHeadNumber;
 	}
 	
