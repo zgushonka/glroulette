@@ -23,7 +23,7 @@ import casino.Croupie;
 public class App {
 
     private static Croupie croupie = Croupie.newInstance();
-    private static String BASE_URI = "http://localhost:portnumber/casino/";
+    private static String BASE_URI = "http://0.0.0.0:portnumber/casino/";
     private static boolean isManual = false;
     private static Integer portnumber = 9999;
     
