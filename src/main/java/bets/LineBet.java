@@ -2,7 +2,7 @@ package bets;
 
 import org.nr.roulette.exceptions.ValidationException;
 
-public class LineBet extends Bet {
+public class LineBet extends SmallSectorBet {
 
 	private static final int RATE = 5;
 
@@ -13,11 +13,27 @@ public class LineBet extends Bet {
 
 	@Override
 	protected int calcBetCode(int number) {
+		
+		int betNumber = number;
+		betNumber = correctStreet(betNumber);
 		// shift to zero and divide to line count
-		int line = (number - 1) / 6;
-		return line;
+		int lineHeadNumber = (number - 1) / 3;
+		return lineHeadNumber;
 	}
-
+	
+	@Override
+	protected boolean compareBetWithWin () {
+		
+		boolean betWin = false;
+		for (int i = 0; i < 6; i++) {
+			if ( numberMatchWith(i) ) {
+				betWin = true;
+			}
+		}
+		
+		return betWin;
+	}
+	
     public int hashCode() {
         return 7000 + getBetCode();
     }
