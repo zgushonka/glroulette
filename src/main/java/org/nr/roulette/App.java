@@ -87,14 +87,19 @@ public class App {
                     
                 }
             }, 10, 5, TimeUnit.SECONDS);
+            
             }
             
             
+            System.out.println("---------------------------------------------------");
             System.out.println("Listening URI is " + BASE_URI);
             System.out.println("Rules can be found on " + BASE_URI + "rules");
             System.out.println("Game stats can be obtained from " + BASE_URI + "stats");
+            System.out.println("XML stats can be obtained from " + BASE_URI + "statsxml");
             System.out.println("The WADL file can be found on " + BASE_URI + "application.wadl");
             System.out.println(String.format("Application started.%nHit enter to stop it..."));
+            System.out.println("---------------------------------------------------");
+            
             System.in.read();
             server.stop();
         } catch (IOException ex) {

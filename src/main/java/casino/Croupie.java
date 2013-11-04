@@ -17,7 +17,8 @@ public class Croupie {
     private static Croupie myOwnCroupieWithBlackJack = null;
     private static Integer manualSpinNumber = null;
     private static Roulette roulette = null;
-    private static int totalSpins  = 0;
+    private static int totalSpins = 0;
+    private static long last_spin_ts = System.currentTimeMillis() ;
 
     private Croupie() {
     }
@@ -40,28 +41,47 @@ public class Croupie {
 
     public String getStats() {
         String res = "";
-        res += "<HTML>\n<HEAD>\n" +
-                "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; CHARSET=UTF-8\"/>" +
-                "\n<TITLE>Roulette statistics</TITLE>" +
-                "<HEAD>\n<BODY>\n" + "<P>TOTAL SPINS = " + totalSpins  + "</P>\n" + 
-                "<P>WIN NUMBER = " + roulette.getLastSpinResult()  + "</P>\n" +
-                "<TABLE BORDER=\"1\" BORDERCOLOR=\"#006600\" STYLE=\"background-color:#FFFFCC\" WIDTH=\"100%\" CELLPADDING=\"3\" CELLSPACING=\"3\">\n";
+        res += "<HTML>\n<HEAD>\n" + "<meta http-equiv=\"refresh\" content=\"1\">" + "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; CHARSET=UTF-8\"/>" + "\n<TITLE>Roulette statistics</TITLE>"
+                + "<HEAD>\n<BODY>\n" + "<P>TOTAL SPINS = " + totalSpins + "</P>\n" + "<P>WIN NUMBER = " + roulette.getLastSpinResult() + "</P>\n" + 
+                "<P>TIME TO NEXT SPIN = " + getTimeToSpin()
+                + "</P>\n" + "<TABLE BORDER=\"1\" BORDERCOLOR=\"#006600\" STYLE=\"background-color:#FFFFCC\" WIDTH=\"100%\" CELLPADDING=\"3\" CELLSPACING=\"3\">\n";
 
-        //table header
-        res += "<TR><TD>Name</TD><TD>ID</TD><TD>MONEY</TD><TD>WINS</TD></TR>\n" ;
-        
+        // table header
+        res += "<TR><TD>Name</TD><TD>ID</TD><TD>MONEY</TD><TD>WINS</TD></TR>\n";
+
         for (Player pl : players.values()) {
-            res += "<TR><TD>" + pl.getName() + "</TD><TD>" + pl.getId() + "</TD><TD>" + pl.getMoney() + "</TD><TD>" + pl.getWinBetCount() + "</TD></TR>\n" ;
+            res += "<TR><TD>" + pl.getName() + "</TD><TD>" + pl.getId() + "</TD><TD>" + pl.getMoney() + "</TD><TD>" + pl.getWinBetCount() + "</TD></TR>\n";
         }
         res += "\n</TABLE>\n</BODY>\n</HTML>";
         return res;
+    }
+    
+    
+    public String getStatsXml() {
+        String res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+        res += "<stats>";
+        res += "<totalSpins>" + totalSpins + "</totalSpins>";
+        res += "<winNumber>" + roulette.getLastSpinResult() + "</winNumber>";
+        res += "<timeToSpin>" + getTimeToSpin() + "</timeToSpin>";
+        for (Player pl : players.values()) {
+            res += "<player>"; 
+            res += "<TR><TD>" + pl.getName() + "</TD><TD>" + pl.getId() + "</TD><TD>" + pl.getMoney() + "</TD><TD>" + pl.getWinBetCount() + "</TD></TR>\n";
+            res += "</player>";
+        }
+        
+        res += "</stats>";
+        return res;
+    }    
+
+    private float getTimeToSpin() {
+        return (float) (5.00 - ((System.currentTimeMillis() - last_spin_ts) / 1000.00000000000000001));
     }
 
     // binding bet to player
     private Map<UUID, UUID> betsToPlayer = new HashMap<UUID, UUID>();
 
     // Player BetCodes Set
-    private Map<UUID, Set<Bet>> playerBets = new HashMap<UUID, Set<Bet> >();
+    private Map<UUID, Set<Bet>> playerBets = new HashMap<UUID, Set<Bet>>();
 
     public OperationResult registerPlayer(Player player) {
         players.put(player.getId(), player);
@@ -89,14 +109,14 @@ public class Croupie {
 
     private boolean isBetNewForPlayer(Bet bet, UUID playerId) {
 
-    	for (UUID id : playerBets.keySet()) {
+        for (UUID id : playerBets.keySet()) {
             System.out.println(id);
             System.out.println(playerBets.get(id));
         }
-        
+
         Set<Bet> betsSet = playerBets.get(playerId);
         boolean betExist = betsSet.contains(bet);
-        
+
         boolean betIsNew = !betExist;
         return betIsNew;
     }
@@ -154,8 +174,11 @@ public class Croupie {
     }
 
     public void performGameMove() {
+        last_spin_ts = System.currentTimeMillis() ;
+        
         // select win number
         int winNumber = 0;
+               
 
         // winNumber = isManualSpin() ? manualSpinNumber :
         // roulette.performSpin();

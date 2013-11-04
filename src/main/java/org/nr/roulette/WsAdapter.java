@@ -27,36 +27,7 @@ public class WsAdapter {
      * The method performs requests routing and corresponding responses
      * generation
      */
-//      This is a manual XML generation first approach. Replaced with marshalling approach
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_XML)
-//    @Produces(MediaType.APPLICATION_XML)
-//    public String put(String xmlRequest) throws UnsupportedEncodingException {
-//        String response = "";
-//        try {
-//            Request request = RequestFactory.createRequest(xmlRequest);
-//            if (request  instanceof RegisterRequest)
-//            { 
-//                RegisterResponse regResp = (RegisterResponse) InDoor.processRegisterRequest((RegisterRequest) request);
-//                response = ResponseXmlGenerator.generate(regResp); 
-//            }
-//            else if (request  instanceof BetRequest)
-//            {
-//                BetResponse betResp = (BetResponse) InDoor.processBetRequest((BetRequest) request);                
-//                response = ResponseXmlGenerator.generate(betResp); 
-//            }
-//            
-//        } catch (ParserConfigurationException e) {
-//            e.printStackTrace();
-//        } catch (SAXException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (ValidationException e) {
-//            e.printStackTrace();
-//        }
-//        return response;
-//    }
+
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
@@ -111,6 +82,14 @@ public class WsAdapter {
     public String getStats()
     {
         return Croupie.newInstance().getStats();
+    }    
+    
+    @GET
+    @Path("/statsxml")
+    @Produces("text/xml")
+    public String getStatsXml()
+    {
+        return Croupie.newInstance().getStatsXml();
     }    
     
 }
