@@ -20,7 +20,7 @@ public class RequestFactory {
     
     private final static String tableType  = "normal";
     
-    public static Document parseRequestXml(String xml) throws ParserConfigurationException, SAXException, IOException {
+    public static Document parseXml(String xml) throws ParserConfigurationException, SAXException, IOException {
         Document doc = null;
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -87,7 +87,7 @@ public class RequestFactory {
 
     public static Request createRequest(String xmlRequest) throws ParserConfigurationException, SAXException, IOException, ValidationException {
 
-        Document doc = RequestFactory.parseRequestXml(xmlRequest);
+        Document doc = RequestFactory.parseXml(xmlRequest);
         if (doc == null) {
             throw new SAXException("Non valid request XML");
         }
