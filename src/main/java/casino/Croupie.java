@@ -65,7 +65,10 @@ public class Croupie {
         res += "<timeToSpin>" + getTimeToSpin() + "</timeToSpin>";
         for (Player pl : players.values()) {
             res += "<player>"; 
-            res += "<TR><TD>" + pl.getName() + "</TD><TD>" + pl.getId() + "</TD><TD>" + pl.getMoney() + "</TD><TD>" + pl.getWinBetCount() + "</TD></TR>\n";
+            res += "<name value=\"" + pl.getName() + "\" />";
+            res += "<id value=\"" + pl.getId() + "\" />";
+            res += "<balance value=\"" + pl.getMoney() + "\" />";
+            res += "<totalwins value=\"" + pl.getWinBetCount() + "\" />";
             res += "</player>";
         }
         
